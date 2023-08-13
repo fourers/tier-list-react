@@ -16,12 +16,16 @@ export default function Row({ rowIndex, name, items }) {
           backgroundColor: "primary.main",
         }}
       >
-        <Typography variant="h3">{name}</Typography>
+        <Typography variant="h5">{name}</Typography>
       </Grid>
       <Grid xs sx={{ padding: "1rem", backgroundColor: "grey.500" }}>
         <Droppable droppableId={rowIndex} direction="horizontal">
           {(provided, _snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
+            <div
+              ref={provided.innerRef}
+              style={{ display: "flex", overflow: "auto" }}
+              {...provided.droppableProps}
+            >
               <Stack
                 direction="row"
                 justifyContent="flex-start"

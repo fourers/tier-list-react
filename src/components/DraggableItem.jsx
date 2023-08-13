@@ -8,6 +8,7 @@ export default function DraggableItem({ id, itemIndex, tooltip }) {
       {(provided, _snapshot) => (
         <div
           ref={provided.innerRef}
+          style={{ userSelect: "none" }}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
