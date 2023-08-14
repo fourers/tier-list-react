@@ -7,14 +7,26 @@ import Stack from "@mui/material/Stack";
 import data from "./default_data.json";
 import { IMG_BLOCK_WITH_MARGIN_HEIGHT, ROW_BACKGROUND_COLOUR, ROW_PADDING, ROW_MIN_HEIGHT } from "./constants";
 
+const getBorderStyle = (isBottom) => {
+    const defaultBorderStyle = {
+        borderColor: "black",
+        borderStyle: "solid",
+    };
+    if (isBottom) {
+        return defaultBorderStyle;
+    }
+    return {
+        ...defaultBorderStyle,
+        borderBottom: 0,
+    }
+}
+
 export default function Row({ rowId, items, isBottom }) {
     return (
         <Grid
             container
             sx={{
-                borderColor: "black",
-                borderStyle: "solid",
-                borderTop: 0,
+                ...getBorderStyle(isBottom),
                 minHeight: ROW_MIN_HEIGHT,
             }}
         >

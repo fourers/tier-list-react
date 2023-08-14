@@ -50,14 +50,7 @@ export default function TierList() {
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <Box
-                sx={{
-                    borderBottom: 0,
-                    borderColor: "black",
-                    borderLeft: 0,
-                    borderRight: 0,
-                    borderStyle: "solid",
-                    width: "100%",
-                }}
+                sx={{ width: "100%" }}
             >
                 {data.rowOrder.map((rowId) => {
                     return (
