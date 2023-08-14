@@ -35,6 +35,7 @@ export default function TierList() {
                         />
                     );
                 })}
+                <Row key="last-row" rowIndex="last-row" items={[]} />
             </Box>
         </DragDropContext>
     );

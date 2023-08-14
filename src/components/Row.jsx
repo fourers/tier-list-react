@@ -9,19 +9,23 @@ export default function Row({ rowIndex, name, items }) {
     return (
         <Grid
             container
-            sx={{ borderColor: "black", borderStyle: "solid", borderTop: 0 }}
+            sx={{ borderColor: "black", borderStyle: "solid", borderTop: 0, minHeight: "70px" }}
         >
-            <Grid
-                xs="auto"
-                sx={{
-                    backgroundColor: "primary.main",
-                    padding: "1rem",
-                    textAlign: "center",
-                }}
-            >
-                <Typography variant="h5">{name}</Typography>
-            </Grid>
-            <Grid xs sx={{ backgroundColor: "grey.500", padding: "1rem" }}>
+            {name && (
+                <Grid
+                    xs="auto"
+                    sx={{
+                        backgroundColor: "primary.main",
+                        maxWidth: "120px",
+                        minWidth: "90px",
+                        padding: "1rem",
+                        textAlign: "center",
+                    }}
+                >
+                    <Typography variant="h5">{name}</Typography>
+                </Grid>
+            )}
+            <Grid xs sx={{ backgroundColor: "#333", padding: "1rem" }}>
                 <Droppable droppableId={rowIndex} direction="horizontal">
                     {(provided, _snapshot) => (
                         <div
