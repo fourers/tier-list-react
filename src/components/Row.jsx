@@ -16,7 +16,8 @@ export default function Row({ rowId, items, isBottom }) {
                 <Grid
                     xs="auto"
                     sx={{
-                        backgroundColor: "primary.main",
+                        backgroundColor: data.rows[rowId].colour,
+                        color: "black",
                         maxWidth: "120px",
                         minWidth: "90px",
                         padding: "10px",

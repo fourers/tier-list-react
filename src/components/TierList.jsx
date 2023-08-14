@@ -7,19 +7,37 @@ import data from "./default_data.json"
 
 
 const initialiseData = () => {
-    const tierData = data.rowOrder.map((v) => {
-        return {id: v, items: []};
-    });
-    tierData.push({id: BOTTOM_ROW_ID, items: data.itemOrder});
+    const tierData = {[BOTTOM_ROW_ID]: data.itemOrder};
+    data.rowOrder.forEach((row) => {
+        tierData[row] = [];
+    })
     return tierData;
 }
 
 
 export default function TierList() {
-    const [tierState, _setTierState] = useState(initialiseData());
+    const [tierState, setTierState] = useState(initialiseData());
 
     const onDragEnd = (result) => {
         console.log(result);
+        if (!result.destination) {
+            return;
+        }
+        const sourceRow = result.source.droppableId;
+        const sourceIndex = result.source.index;
+        const destinationRow = result.destination.droppableId;
+        const destinationIndex = result.destination.index;
+        if (sourceRow === destinationRow && sourceIndex == destinationIndex) {
+            return;
+        }
+        const sourceClone = Array.from(tierState[sourceRow]);
+        const [removedItem] = sourceClone.splice(sourceIndex, 1);
+        if (sourceRow === destinationRow) {
+            sourceClone.splice(destinationIndex, 0, removedItem);
+            setTierState((old) => {
+                return {...old, [sourceRow]: sourceClone};
+            });
+        }
     };
 
     return (
@@ -34,16 +52,21 @@ export default function TierList() {
                     width: "100%",
                 }}
             >
-                {tierState.map((rowData) => {
+                {data.rowOrder.map((rowId) => {
                     return (
                         <Row
-                            key={rowData.id}
-                            rowId={rowData.id}
-                            items={rowData.items}
-                            isBottom={rowData.id == BOTTOM_ROW_ID}
+                            key={rowId}
+                            rowId={rowId}
+                            items={tierState[rowId]}
                         />
                     );
                 })}
+                <Row
+                    key={BOTTOM_ROW_ID}
+                    rowId={BOTTOM_ROW_ID}
+                    items={tierState[BOTTOM_ROW_ID]}
+                    isBottom
+                />
             </Box>
         </DragDropContext>
     );
