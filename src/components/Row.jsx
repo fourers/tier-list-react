@@ -5,6 +5,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import data from "./default_data.json";
+import { IMG_BLOCK_WITH_MARGIN_HEIGHT, ROW_BACKGROUND_COLOUR, ROW_PADDING, ROW_MIN_HEIGHT } from "./constants";
 
 export default function Row({ rowId, items, isBottom }) {
     return (
@@ -14,7 +15,7 @@ export default function Row({ rowId, items, isBottom }) {
                 borderColor: "black",
                 borderStyle: "solid",
                 borderTop: 0,
-                minHeight: "114px",
+                minHeight: ROW_MIN_HEIGHT,
             }}
         >
             {!isBottom && (
@@ -25,7 +26,6 @@ export default function Row({ rowId, items, isBottom }) {
                         color: "black",
                         maxWidth: "120px",
                         minWidth: "90px",
-                        padding: "10px",
                         textAlign: "center",
                     }}
                 >
@@ -41,32 +41,25 @@ export default function Row({ rowId, items, isBottom }) {
                     </Stack>
                 </Grid>
             )}
-            <Grid xs sx={{ backgroundColor: "#333", padding: "10px" }}>
+            <Grid xs sx={{ backgroundColor: ROW_BACKGROUND_COLOUR, padding: ROW_PADDING }}>
                 <Droppable droppableId={rowId} direction="horizontal">
                     {(provided, _snapshot) => (
                         <div
                             ref={provided.innerRef}
                             style={{
                                 display: "flex",
-                                minHeight: "94px",
+                                minHeight: IMG_BLOCK_WITH_MARGIN_HEIGHT,
                                 overflow: "auto",
                             }}
                             {...provided.droppableProps}
                         >
-                            <Stack
-                                direction="row"
-                                justifyContent="flex-start"
-                                alignItems="flex-start"
-                                spacing={1}
-                            >
-                                {items.map((item, index) => (
-                                    <DraggableItem
-                                        key={item}
-                                        itemId={item}
-                                        index={index}
-                                    />
-                                ))}
-                            </Stack>
+                            {items.map((item, index) => (
+                                <DraggableItem
+                                    key={item}
+                                    itemId={item}
+                                    index={index}
+                                />
+                            ))}
                             {provided.placeholder}
                         </div>
                     )}

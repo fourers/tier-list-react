@@ -17,7 +17,6 @@ export default function TierList() {
     const [tierState, setTierState] = useState(initialiseData());
 
     const onDragEnd = (result) => {
-        console.log(result);
         if (!result.destination) {
             return;
         }

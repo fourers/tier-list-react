@@ -1,6 +1,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import data from "./default_data.json";
+import { IMG_BLOCK_HEIGHT, IMG_BLOCK_MARGIN } from "./constants";
 
 export default function DraggableItem({ itemId, index }) {
     const itemSrc = data.items[itemId].src;
@@ -10,13 +11,17 @@ export default function DraggableItem({ itemId, index }) {
             {(provided, _snapshot) => (
                 <div
                     ref={provided.innerRef}
-                    style={{ userSelect: "none" }}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
                     <img
                         src={itemSrc}
-                        style={{ height: "90px" }}
+                        style={{
+                            display: "block",
+                            height: IMG_BLOCK_HEIGHT,
+                            margin: IMG_BLOCK_MARGIN,
+                            userSelect: "none"
+                        }}
                         title={tooltip}
                     />
                 </div>
