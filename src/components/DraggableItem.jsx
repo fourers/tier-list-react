@@ -14,7 +14,11 @@ export default function DraggableItem({ itemId, index }) {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <img src={itemSrc} style={{ height: "90px" }} title={tooltip} />
+                    <img
+                        src={itemSrc}
+                        style={{ height: "90px" }}
+                        title={tooltip}
+                    />
                 </div>
             )}
         </Draggable>

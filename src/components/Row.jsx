@@ -10,7 +10,12 @@ export default function Row({ rowId, items, isBottom }) {
     return (
         <Grid
             container
-            sx={{ borderColor: "black", borderStyle: "solid", borderTop: 0, minHeight: "114px" }}
+            sx={{
+                borderColor: "black",
+                borderStyle: "solid",
+                borderTop: 0,
+                minHeight: "114px",
+            }}
         >
             {!isBottom && (
                 <Grid
@@ -24,8 +29,15 @@ export default function Row({ rowId, items, isBottom }) {
                         textAlign: "center",
                     }}
                 >
-                    <Stack alignItems="center" direction="column" justifyContent="center" style={{ height: "100%" }}>
-                        <Typography variant="h5">{data.rows[rowId].name}</Typography>
+                    <Stack
+                        alignItems="center"
+                        direction="column"
+                        justifyContent="center"
+                        style={{ height: "100%" }}
+                    >
+                        <Typography variant="h5">
+                            {data.rows[rowId].name}
+                        </Typography>
                     </Stack>
                 </Grid>
             )}
@@ -34,14 +46,18 @@ export default function Row({ rowId, items, isBottom }) {
                     {(provided, _snapshot) => (
                         <div
                             ref={provided.innerRef}
-                            style={{ display: "flex", overflow: "auto" }}
+                            style={{
+                                display: "flex",
+                                minHeight: "94px",
+                                overflow: "auto",
+                            }}
                             {...provided.droppableProps}
                         >
                             <Stack
                                 direction="row"
                                 justifyContent="flex-start"
                                 alignItems="flex-start"
-                                spacing={2}
+                                spacing={1}
                             >
                                 {items.map((item, index) => (
                                     <DraggableItem

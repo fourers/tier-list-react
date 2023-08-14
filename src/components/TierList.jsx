@@ -3,17 +3,15 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Row from "./Row";
 import Box from "@mui/material/Box";
 import { BOTTOM_ROW_ID } from "./constants";
-import data from "./default_data.json"
-
+import data from "./default_data.json";
 
 const initialiseData = () => {
-    const tierData = {[BOTTOM_ROW_ID]: data.itemOrder};
+    const tierData = { [BOTTOM_ROW_ID]: data.itemOrder };
     data.rowOrder.forEach((row) => {
         tierData[row] = [];
-    })
+    });
     return tierData;
-}
-
+};
 
 export default function TierList() {
     const [tierState, setTierState] = useState(initialiseData());
@@ -35,7 +33,17 @@ export default function TierList() {
         if (sourceRow === destinationRow) {
             sourceClone.splice(destinationIndex, 0, removedItem);
             setTierState((old) => {
-                return {...old, [sourceRow]: sourceClone};
+                return { ...old, [sourceRow]: sourceClone };
+            });
+        } else {
+            const destinationClone = Array.from(tierState[destinationRow]);
+            destinationClone.splice(destinationIndex, 0, removedItem);
+            setTierState((old) => {
+                return {
+                    ...old,
+                    [destinationRow]: destinationClone,
+                    [sourceRow]: sourceClone,
+                };
             });
         }
     };
