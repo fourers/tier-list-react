@@ -16,7 +16,7 @@ const getRowStyle = (isBottom) => {
     const defaultStyle = {
         borderColor: "black",
         borderStyle: "solid",
-        minHeight: ROW_MIN_HEIGHT
+        minHeight: ROW_MIN_HEIGHT,
     };
     if (isBottom) {
         return {
@@ -37,8 +37,8 @@ const getBackgroundStyle = (isBottom) => {
     if (isBottom) {
         return {};
     }
-    return { backgroundColor: ROW_BACKGROUND_COLOUR }
-}
+    return { backgroundColor: ROW_BACKGROUND_COLOUR };
+};
 
 export default function Row({ rowId, items, isBottom }) {
     return (
@@ -47,6 +47,7 @@ export default function Row({ rowId, items, isBottom }) {
             sx={{
                 ...getRowStyle(isBottom),
             }}
+            xs={isBottom ? true : false}
         >
             {!isBottom && (
                 <Grid
