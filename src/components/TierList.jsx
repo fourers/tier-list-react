@@ -1,7 +1,7 @@
+import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Row from "./Row";
-import Box from "@mui/material/Box";
 import { BOTTOM_ROW_ID } from "./constants";
 import data from "./default_data.json";
 

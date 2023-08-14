@@ -1,7 +1,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import data from "./default_data.json";
 import { IMG_BLOCK_HEIGHT, IMG_BLOCK_MARGIN } from "./constants";
+import data from "./default_data.json";
 
 export default function DraggableItem({ itemId, index }) {
     const itemSrc = data.items[itemId].src;

@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
+    'plugin:import/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
@@ -22,5 +23,7 @@ module.exports = {
     'no-unused-vars': ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
     'react/jsx-uses-react': 2,
     'sort-keys': 'error',
+    'import/no-unresolved': 0,
+    'import/order': [2, { 'alphabetize': {'order': 'asc'}}],
   },
 }

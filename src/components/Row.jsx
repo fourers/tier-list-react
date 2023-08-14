@@ -1,16 +1,16 @@
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import DraggableItem from "./DraggableItem";
-import Grid from "@mui/material/Unstable_Grid2";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import data from "./default_data.json";
 import {
     IMG_BLOCK_WITH_MARGIN_HEIGHT,
     ROW_BACKGROUND_COLOUR,
-    ROW_PADDING,
     ROW_MIN_HEIGHT,
+    ROW_PADDING,
 } from "./constants";
+import data from "./default_data.json";
 
 const getBorderStyle = (isBottom) => {
     const defaultBorderStyle = {
