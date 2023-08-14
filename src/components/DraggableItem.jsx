@@ -1,7 +1,20 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { IMG_BLOCK_HEIGHT, IMG_BLOCK_MARGIN } from "./constants";
+import { IMG_BLOCK_HEIGHT, IMG_BLOCK_MARGIN, IMG_BLOCK_WITH_MARGIN_HEIGHT } from "./constants";
 import data from "./default_data.json";
+
+
+const getDraggableProps = (draggableProps, dragHandleProps) => {
+    const props = {
+        ...draggableProps,
+        ...dragHandleProps,
+    };
+    const styleCopy = Object.assign({}, props.style)
+    styleCopy.height = IMG_BLOCK_HEIGHT
+    props.style = styleCopy;
+    return props;
+}
+
 
 export default function DraggableItem({ itemId, index }) {
     const itemSrc = data.items[itemId].src;
@@ -11,8 +24,7 @@ export default function DraggableItem({ itemId, index }) {
             {(provided, _snapshot) => (
                 <div
                     ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
+                    {...getDraggableProps(provided.draggableProps, provided.dragHandleProps)}
                 >
                     <img
                         src={itemSrc}

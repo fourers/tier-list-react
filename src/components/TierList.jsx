@@ -4,6 +4,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Row from "./Row";
 import { BOTTOM_ROW_ID } from "./constants";
 import data from "./default_data.json";
+import Grid from "@mui/material/Unstable_Grid2";
 
 const initialiseData = () => {
     const tierData = { [BOTTOM_ROW_ID]: data.itemOrder };
@@ -57,6 +58,7 @@ export default function TierList() {
                     width: "100%",
                 }}
             >
+                <Grid container direction="column" style={{ height: "100%" }}>
                 {data.rowOrder.map((rowId) => {
                     return (
                         <Row
@@ -72,7 +74,7 @@ export default function TierList() {
                     items={tierState[BOTTOM_ROW_ID]}
                     isBottom
                 />
-            </Box>
+            </Grid></Box>
         </DragDropContext>
     );
 }

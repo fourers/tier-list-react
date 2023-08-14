@@ -40,6 +40,13 @@ const getBackgroundStyle = (isBottom) => {
     return { backgroundColor: ROW_BACKGROUND_COLOUR };
 };
 
+const getDroppableStyle = (isBottom) => {
+    if (isBottom) {
+        return { height: "100%" };
+    }
+    return {};
+}
+
 export default function Row({ rowId, items, isBottom }) {
     return (
         <Grid
@@ -77,6 +84,7 @@ export default function Row({ rowId, items, isBottom }) {
                 sx={{
                     ...getBackgroundStyle(isBottom),
                     padding: ROW_PADDING,
+                    height: "unset",
                 }}
             >
                 <Droppable droppableId={rowId} direction="horizontal">
@@ -84,6 +92,7 @@ export default function Row({ rowId, items, isBottom }) {
                         <div
                             ref={provided.innerRef}
                             style={{
+                                ...getDroppableStyle(isBottom),
                                 display: "flex",
                                 minHeight: IMG_BLOCK_WITH_MARGIN_HEIGHT,
                                 overflow: "auto",
