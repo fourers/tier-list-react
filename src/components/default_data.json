@@ -17,8 +17,20 @@
         "connor6Homie": {
             "name": "connor6Homie",
             "src": "emotes/connor6Homie.png"
+        },
+        "connor6Kiss": {
+            "name": "connor6Kiss",
+            "src": "emotes/connor6Kiss.png"
+        },
+        "connor6L": {
+            "name": "connor6L",
+            "src": "emotes/connor6L.png"
+        },
+        "connor6Leap": {
+            "name": "connor6Leap",
+            "src": "emotes/connor6Leap.png"
         }
     },
     "rowOrder": ["row-1", "row-2"],
-    "itemOrder": ["connor6Frog", "connor6Homie"]
+    "itemOrder": ["connor6Frog", "connor6Homie", "connor6Kiss", "connor6L", "connor6Leap"]
 }
