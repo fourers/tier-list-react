@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import rows from "./rows.json";
 import Row from "./Row";
 import Box from "@mui/material/Box";
+import { BOTTOM_ROW_ID } from "./constants";
+import data from "./default_data.json"
+
+
+const initialiseData = () => {
+    const tierData = data.rowOrder.map((v) => {
+        return {id: v, items: []};
+    });
+    tierData.push({id: BOTTOM_ROW_ID, items: data.itemOrder});
+    return tierData;
+}
+
 
 export default function TierList() {
-    const [rowData, _setRowData] = useState(rows);
+    const [tierState, _setTierState] = useState(initialiseData());
 
     const onDragEnd = (result) => {
         console.log(result);
@@ -23,19 +34,16 @@ export default function TierList() {
                     width: "100%",
                 }}
             >
-                {rowData.rowOrder.map((rowId) => {
-                    const rowName = rowData[rowId].name;
-                    const rowItems = rowData[rowId].items;
+                {tierState.map((rowData) => {
                     return (
                         <Row
-                            key={rowId}
-                            rowIndex={rowId}
-                            name={rowName}
-                            items={rowItems}
+                            key={rowData.id}
+                            rowId={rowData.id}
+                            items={rowData.items}
+                            isBottom={rowData.id == BOTTOM_ROW_ID}
                         />
                     );
                 })}
-                <Row key="last-row" rowIndex="last-row" items={[]} />
             </Box>
         </DragDropContext>
     );

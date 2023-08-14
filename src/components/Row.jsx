@@ -4,29 +4,32 @@ import DraggableItem from "./DraggableItem";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import data from "./default_data.json";
 
-export default function Row({ rowIndex, name, items }) {
+export default function Row({ rowId, items, isBottom }) {
     return (
         <Grid
             container
-            sx={{ borderColor: "black", borderStyle: "solid", borderTop: 0, minHeight: "70px" }}
+            sx={{ borderColor: "black", borderStyle: "solid", borderTop: 0, minHeight: "114px" }}
         >
-            {name && (
+            {!isBottom && (
                 <Grid
                     xs="auto"
                     sx={{
                         backgroundColor: "primary.main",
                         maxWidth: "120px",
                         minWidth: "90px",
-                        padding: "1rem",
+                        padding: "10px",
                         textAlign: "center",
                     }}
                 >
-                    <Typography variant="h5">{name}</Typography>
+                    <Stack alignItems="center" direction="column" justifyContent="center" style={{ height: "100%" }}>
+                        <Typography variant="h5">{data.rows[rowId].name}</Typography>
+                    </Stack>
                 </Grid>
             )}
-            <Grid xs sx={{ backgroundColor: "#333", padding: "1rem" }}>
-                <Droppable droppableId={rowIndex} direction="horizontal">
+            <Grid xs sx={{ backgroundColor: "#333", padding: "10px" }}>
+                <Droppable droppableId={rowId} direction="horizontal">
                     {(provided, _snapshot) => (
                         <div
                             ref={provided.innerRef}
@@ -41,10 +44,9 @@ export default function Row({ rowIndex, name, items }) {
                             >
                                 {items.map((item, index) => (
                                     <DraggableItem
-                                        key={index}
-                                        id={`item-${item}`}
-                                        itemIndex={index}
-                                        tooltip={item}
+                                        key={item}
+                                        itemId={item}
+                                        index={index}
                                     />
                                 ))}
                             </Stack>
