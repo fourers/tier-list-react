@@ -12,27 +12,40 @@ import {
 } from "./constants";
 import data from "./default_data.json";
 
-const getBorderStyle = (isBottom) => {
-    const defaultBorderStyle = {
+const getRowStyle = (isBottom) => {
+    const defaultStyle = {
         borderColor: "black",
         borderStyle: "solid",
+        minHeight: ROW_MIN_HEIGHT
     };
     if (isBottom) {
-        return defaultBorderStyle;
+        return {
+            ...defaultStyle,
+            borderBottom: 0,
+            borderLeft: 0,
+            borderRight: 0,
+            paddingTop: "5px",
+        };
     }
     return {
-        ...defaultBorderStyle,
+        ...defaultStyle,
         borderBottom: 0,
     };
 };
+
+const getBackgroundStyle = (isBottom) => {
+    if (isBottom) {
+        return {};
+    }
+    return { backgroundColor: ROW_BACKGROUND_COLOUR }
+}
 
 export default function Row({ rowId, items, isBottom }) {
     return (
         <Grid
             container
             sx={{
-                ...getBorderStyle(isBottom),
-                minHeight: ROW_MIN_HEIGHT,
+                ...getRowStyle(isBottom),
             }}
         >
             {!isBottom && (
@@ -61,7 +74,7 @@ export default function Row({ rowId, items, isBottom }) {
             <Grid
                 xs
                 sx={{
-                    backgroundColor: ROW_BACKGROUND_COLOUR,
+                    ...getBackgroundStyle(isBottom),
                     padding: ROW_PADDING,
                 }}
             >
