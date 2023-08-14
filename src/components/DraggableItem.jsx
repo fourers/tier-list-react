@@ -20,7 +20,7 @@ export default function DraggableItem({ itemId, index }) {
                             display: "block",
                             height: IMG_BLOCK_HEIGHT,
                             margin: IMG_BLOCK_MARGIN,
-                            userSelect: "none"
+                            userSelect: "none",
                         }}
                         title={tooltip}
                     />

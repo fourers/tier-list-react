@@ -5,7 +5,12 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import data from "./default_data.json";
-import { IMG_BLOCK_WITH_MARGIN_HEIGHT, ROW_BACKGROUND_COLOUR, ROW_PADDING, ROW_MIN_HEIGHT } from "./constants";
+import {
+    IMG_BLOCK_WITH_MARGIN_HEIGHT,
+    ROW_BACKGROUND_COLOUR,
+    ROW_PADDING,
+    ROW_MIN_HEIGHT,
+} from "./constants";
 
 const getBorderStyle = (isBottom) => {
     const defaultBorderStyle = {
@@ -18,8 +23,8 @@ const getBorderStyle = (isBottom) => {
     return {
         ...defaultBorderStyle,
         borderBottom: 0,
-    }
-}
+    };
+};
 
 export default function Row({ rowId, items, isBottom }) {
     return (
@@ -53,7 +58,13 @@ export default function Row({ rowId, items, isBottom }) {
                     </Stack>
                 </Grid>
             )}
-            <Grid xs sx={{ backgroundColor: ROW_BACKGROUND_COLOUR, padding: ROW_PADDING }}>
+            <Grid
+                xs
+                sx={{
+                    backgroundColor: ROW_BACKGROUND_COLOUR,
+                    padding: ROW_PADDING,
+                }}
+            >
                 <Droppable droppableId={rowId} direction="horizontal">
                     {(provided, _snapshot) => (
                         <div
