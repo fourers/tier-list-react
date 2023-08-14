@@ -7,6 +7,26 @@
         "row-2": {
             "name": "A",
             "colour": "#FFBF7F"
+        },
+        "row-3": {
+            "name": "B",
+            "colour": "#FFDF7F"
+        },
+        "row-4": {
+            "name": "C",
+            "colour": "#FFFF7F"
+        },
+        "row-5": {
+            "name": "D",
+            "colour": "#BFFF7F"
+        },
+        "row-6": {
+            "name": "E",
+            "colour": "#7FFF7F"
+        },
+        "row-7": {
+            "name": "F",
+            "colour": "#7FFFFF"
         }
     },
     "items": {
@@ -31,6 +51,6 @@
             "src": "emotes/connor6Leap.png"
         }
     },
-    "rowOrder": ["row-1", "row-2"],
+    "rowOrder": ["row-1", "row-2", "row-3", "row-4", "row-5"],
     "itemOrder": ["connor6Frog", "connor6Homie", "connor6Kiss", "connor6L", "connor6Leap"]
 }
