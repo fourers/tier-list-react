@@ -2,8 +2,8 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
-import { Droppable } from "react-beautiful-dnd";
-import DraggableItem from "./DraggableItem";
+import Item from "./Item";
+import Droppable from "./Droppable";
 import {
     IMG_BLOCK_WITH_MARGIN_HEIGHT,
     ROW_BACKGROUND_COLOUR,
@@ -95,25 +95,14 @@ export default function Row({ rowId, items, isBottom }) {
                 sx={{
                     ...getBackgroundStyle(isBottom),
                     padding: ROW_PADDING,
-                    height: "unset",
                 }}
             >
-                <Droppable droppableId={rowId} direction="horizontal">
-                    {(provided, _snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            {...getDroppableStyle(provided.droppableProps)}
-                        >
-                            {items.map((item, index) => (
-                                <DraggableItem
-                                    key={item}
-                                    itemId={item}
-                                    index={index}
-                                />
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
+                <Droppable key={rowId} id={rowId}>
+                    {
+                        items.map((itemId) => (
+                            <Item key={itemId} id={itemId} />
+                        ))
+                    }
                 </Droppable>
             </Grid>
         </Grid>

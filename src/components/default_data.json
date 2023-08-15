@@ -95,23 +95,11 @@
             "src": "emotes/connor61984.png"
         }
     },
-    "rowOrder": ["row-1", "row-2", "row-3", "row-4", "row-5"],
+    "rowOrder": ["row-1", "row-2"],
     "itemOrder": [
         "connor6Cheer",
         "connor6Frog",
         "connor6Froggy",
-        "connor6Gun",
-        "connor6Homie",
-        "connor6Kiss",
-        "connor6L",
-        "connor6Leap",
-        "connor6Nasty",
-        "connor6Pride",
-        "connor6Silly",
-        "connor6Stare",
-        "connor6USA",
-        "connor6Yaddas",
-        "connor6283",
-        "connor61984"
+        "connor6Gun"
     ]
 }
