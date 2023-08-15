@@ -1,10 +1,10 @@
+import { DndContext } from "@dnd-kit/core";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Unstable_Grid2";
 import React, { useState } from "react";
 import Row from "./Row";
 import { BOTTOM_ROW_ID } from "./constants";
 import data from "./default_data.json";
-import Grid from "@mui/material/Unstable_Grid2";
-import { DndContext } from '@dnd-kit/core';
 
 const initialiseData = () => {
     const tierData = { [BOTTOM_ROW_ID]: data.itemOrder };
@@ -18,12 +18,14 @@ export default function TierList() {
     const [tierState, setTierState] = useState(initialiseData());
 
     const getRowById = (itemId) => {
-        const matchingRows = data.rowOrder.filter((row) => tierState[row].includes(itemId));
+        const matchingRows = data.rowOrder.filter((row) =>
+            tierState[row].includes(itemId),
+        );
         if (matchingRows.length > 0) {
             return matchingRows[0];
         }
         return BOTTOM_ROW_ID;
-    }
+    };
 
     const onDragEnd = (event) => {
         console.log(event);

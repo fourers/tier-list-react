@@ -2,10 +2,9 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
-import Item from "./Item";
 import Droppable from "./Droppable";
+import Item from "./Item";
 import {
-    IMG_BLOCK_WITH_MARGIN_HEIGHT,
     ROW_BACKGROUND_COLOUR,
     ROW_MIN_HEIGHT,
     ROW_PADDING,
@@ -34,39 +33,25 @@ const getRowStyle = (isBottom) => {
     };
 };
 
-const getBackgroundStyle = (isBottom) => {
-    if (isBottom) {
-        return {};
-    }
-    return { backgroundColor: ROW_BACKGROUND_COLOUR };
-};
-
-const getDroppableStyle = (droppableProps) => {
+const getDraggablePanelStyle = (isBottom) => {
     const defaultStyle = {
-        display: "flex",
-        minHeight: IMG_BLOCK_WITH_MARGIN_HEIGHT,
-        overflow: "auto",
-        flexWrap: "wrap",
+        padding: ROW_PADDING,
     };
-    const styleCopy = Object.assign({}, droppableProps.style)
-    return {
-        ...droppableProps,
-        style: {
-            ...styleCopy,
+    if (isBottom) {
+        return {
             ...defaultStyle,
-        }
+            backgroundColor: "inherit",
+        };
+    }
+    return {
+        ...defaultStyle,
+        backgroundColor: ROW_BACKGROUND_COLOUR,
     };
-}
+};
 
 export default function Row({ rowId, items, isBottom }) {
     return (
-        <Grid
-            container
-            sx={{
-                ...getRowStyle(isBottom),
-            }}
-            xs={isBottom ? true : false}
-        >
+        <Grid container sx={getRowStyle(isBottom)} xs={isBottom ? true : false}>
             {!isBottom && (
                 <Grid
                     xs="auto"
@@ -90,19 +75,11 @@ export default function Row({ rowId, items, isBottom }) {
                     </Stack>
                 </Grid>
             )}
-            <Grid
-                xs
-                sx={{
-                    ...getBackgroundStyle(isBottom),
-                    padding: ROW_PADDING,
-                }}
-            >
+            <Grid xs sx={getDraggablePanelStyle(isBottom)}>
                 <Droppable key={rowId} id={rowId}>
-                    {
-                        items.map((itemId) => (
-                            <Item key={itemId} id={itemId} />
-                        ))
-                    }
+                    {items.map((itemId) => (
+                        <Item key={itemId} id={itemId} />
+                    ))}
                 </Droppable>
             </Grid>
         </Grid>

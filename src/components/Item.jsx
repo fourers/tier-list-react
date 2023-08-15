@@ -1,6 +1,6 @@
 import { Draggable } from "./Draggable";
-import data from "./default_data.json";
 import { IMG_BLOCK_HEIGHT, IMG_BLOCK_MARGIN } from "./constants";
+import data from "./default_data.json";
 
 export default function Item(props) {
     const itemSrc = data.items[props.id].src;
