@@ -1,7 +1,8 @@
-import { DndContext } from "@dnd-kit/core";
+import { DndContext, DragOverlay } from "@dnd-kit/core";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import React, { useState } from "react";
+import Item from "./Item";
 import Row from "./Row";
 import { BOTTOM_ROW_ID } from "./constants";
 import data from "./default_data.json";
@@ -16,6 +17,7 @@ const initialiseData = () => {
 
 export default function TierList() {
     const [tierState, setTierState] = useState(initialiseData());
+    const [activeId, setActiveId] = useState(null);
 
     const getRowById = (itemId) => {
         const matchingRows = data.rowOrder.filter((row) =>
@@ -27,12 +29,16 @@ export default function TierList() {
         return BOTTOM_ROW_ID;
     };
 
+    const onDragStart = (event) => {
+        setActiveId(event.active.id);
+    };
+
     const onDragEnd = (event) => {
-        console.log(event);
+        const sourceId = event.active.id;
+        setActiveId(sourceId);
         if (!event.over) {
             return;
         }
-        const sourceId = event.active.id;
         const sourceRow = getRowById(sourceId);
         const destinationRow = event.over.id;
         if (sourceRow != destinationRow) {
@@ -52,7 +58,7 @@ export default function TierList() {
     };
 
     return (
-        <DndContext onDragEnd={onDragEnd}>
+        <DndContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
             <Box
                 className="main"
                 sx={{
@@ -84,6 +90,9 @@ export default function TierList() {
                     />
                 </Grid>
             </Box>
+            <DragOverlay>
+                {activeId ? <Item key={activeId} id={activeId} /> : null}
+            </DragOverlay>
         </DndContext>
     );
 }
