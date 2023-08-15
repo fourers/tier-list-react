@@ -7,7 +7,15 @@ export default function Droppable(props) {
     });
 
     return (
-        <div ref={setNodeRef} style={{ display: "flex", height: "100%" }}>
+        <div
+            ref={setNodeRef}
+            style={{
+                alignContent: "flex-start",
+                display: "flex",
+                flexWrap: "wrap",
+                height: "100%",
+            }}
+        >
             {props.children}
         </div>
     );
