@@ -62,7 +62,11 @@ export default function TierList() {
                     width: "calc(100% - 40px)",
                 }}
             >
-                <Grid container direction="column" style={{ height: "100%" }}>
+                <Grid
+                    container
+                    direction="column"
+                    style={{ minHeight: "calc(100vh - 40px)" }}
+                >
                     {data.rowOrder.map((rowId) => {
                         return (
                             <Row
