@@ -34,6 +34,10 @@
             "name": "connor6Cheer",
             "src": "emotes/connor6Cheer.png"
         },
+        "connor6FindGod": {
+            "name": "connor6FindGod",
+            "src": "emotes/connor6FindGod.png"
+        },
         "connor6Frog": {
             "name": "connor6Frog",
             "src": "emotes/connor6Frog.png"
@@ -82,6 +86,10 @@
             "name": "connor6USA",
             "src": "emotes/connor6USA.png"
         },
+        "connor6WOOP": {
+            "name": "connor6WOOP",
+            "src": "emotes/connor6WOOP.png"
+        },
         "connor6Yaddas": {
             "name": "connor6Yaddas",
             "src": "emotes/connor6Yaddas.png"
@@ -98,6 +106,7 @@
     "rowOrder": ["row-1", "row-2", "row-3", "row-4", "row-5"],
     "itemOrder": [
         "connor6Cheer",
+        "connor6FindGod",
         "connor6Frog",
         "connor6Froggy",
         "connor6Gun",
@@ -110,6 +119,7 @@
         "connor6Silly",
         "connor6Stare",
         "connor6USA",
+        "connor6WOOP",
         "connor6Yaddas",
         "connor6283",
         "connor61984"
