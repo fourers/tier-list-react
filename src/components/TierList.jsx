@@ -41,20 +41,24 @@ export default function TierList() {
         }
         const sourceRow = getRowById(sourceId);
         const destinationRow = event.over.id;
-        if (sourceRow != destinationRow) {
-            const sourceClone = Array.from(tierState[sourceRow]);
-            const sourceIndex = sourceClone.indexOf(sourceId);
-            const [removedItem] = sourceClone.splice(sourceIndex, 1);
-            const destinationClone = Array.from(tierState[destinationRow]);
-            destinationClone.push(removedItem);
-            setTierState((old) => {
-                return {
-                    ...old,
-                    [destinationRow]: destinationClone,
-                    [sourceRow]: sourceClone,
-                };
-            });
+        if (
+            !destinationRow.startsWith("row-") ||
+            sourceRow === destinationRow
+        ) {
+            return;
         }
+        const sourceClone = Array.from(tierState[sourceRow]);
+        const sourceIndex = sourceClone.indexOf(sourceId);
+        const [removedItem] = sourceClone.splice(sourceIndex, 1);
+        const destinationClone = Array.from(tierState[destinationRow]);
+        destinationClone.push(removedItem);
+        setTierState((old) => {
+            return {
+                ...old,
+                [destinationRow]: destinationClone,
+                [sourceRow]: sourceClone,
+            };
+        });
     };
 
     return (
