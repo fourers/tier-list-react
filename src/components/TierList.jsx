@@ -73,15 +73,13 @@ export default function TierList() {
                     direction="column"
                     style={{ minHeight: "calc(100vh - 40px)" }}
                 >
-                    {data.rowOrder.map((rowId) => {
-                        return (
-                            <Row
-                                key={rowId}
-                                rowId={rowId}
-                                items={tierState[rowId]}
-                            />
-                        );
-                    })}
+                    {data.rowOrder.map((rowId) => (
+                        <Row
+                            key={rowId}
+                            rowId={rowId}
+                            items={tierState[rowId]}
+                        />
+                    ))}
                     <Row
                         key={BOTTOM_ROW_ID}
                         rowId={BOTTOM_ROW_ID}
