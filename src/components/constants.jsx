@@ -1,4 +1,4 @@
-export const BOTTOM_ROW_ID = "last-row";
+export const BOTTOM_ROW_ID = "row-last";
 export const IMG_BLOCK_HEIGHT = "70px";
 export const IMG_BLOCK_MARGIN = "5px";
 export const IMG_BLOCK_WITH_MARGIN_HEIGHT = "80px";

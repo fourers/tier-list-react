@@ -10,6 +10,8 @@ export default function Item(props) {
 
     const itemSrc = data.items[props.id].src;
     const tooltip = data.items[props.id].name;
+
+    const isOver = props.overId === props.id;
     return (
         <Draggable id={props.id}>
             <img
@@ -18,7 +20,10 @@ export default function Item(props) {
                 style={{
                     display: "block",
                     height: IMG_BLOCK_HEIGHT,
-                    margin: IMG_BLOCK_MARGIN,
+                    marginBottom: IMG_BLOCK_MARGIN,
+                    marginLeft: isOver ? "80px" : IMG_BLOCK_MARGIN,
+                    marginRight: IMG_BLOCK_MARGIN,
+                    marginTop: IMG_BLOCK_MARGIN,
                     userSelect: "none",
                 }}
                 title={tooltip}

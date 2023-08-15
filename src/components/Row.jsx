@@ -49,7 +49,7 @@ const getDraggablePanelStyle = (isBottom) => {
     };
 };
 
-export default function Row({ rowId, items, isBottom }) {
+export default function Row({ rowId, items, isBottom, activeId, overId }) {
     return (
         <Grid container sx={getRowStyle(isBottom)} xs={isBottom ? true : false}>
             {!isBottom && (
@@ -77,9 +77,11 @@ export default function Row({ rowId, items, isBottom }) {
             )}
             <Grid xs sx={getDraggablePanelStyle(isBottom)}>
                 <Droppable key={rowId} id={rowId}>
-                    {items.map((itemId) => (
-                        <Item key={itemId} id={itemId} />
-                    ))}
+                    {items.map((itemId) =>
+                        itemId === activeId ? null : (
+                            <Item key={itemId} id={itemId} overId={overId} />
+                        ),
+                    )}
                 </Droppable>
             </Grid>
         </Grid>

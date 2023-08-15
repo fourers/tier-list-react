@@ -18,6 +18,7 @@ const initialiseData = () => {
 export default function TierList() {
     const [tierState, setTierState] = useState(initialiseData());
     const [activeId, setActiveId] = useState(null);
+    const [overId, setOverId] = useState(null);
 
     const getRowById = (itemId) => {
         const matchingRows = data.rowOrder.filter((row) =>
@@ -29,40 +30,90 @@ export default function TierList() {
         return BOTTOM_ROW_ID;
     };
 
+    const getNextId = (itemId) => {
+        const row = getRowById(itemId);
+        const currentIndex = tierState[row].indexOf(itemId);
+        return tierState[row][currentIndex + 1];
+    };
+
     const onDragStart = (event) => {
-        setActiveId(event.active.id);
+        const activeId = event.active.id;
+        setActiveId(activeId);
+        const nextId = getNextId(activeId);
+        setOverId(nextId);
+    };
+
+    const onDragOver = (event) => {
+        setOverId(event.over ? event.over.id : null);
     };
 
     const onDragEnd = (event) => {
-        const sourceId = event.active.id;
-        setActiveId(sourceId);
+        setActiveId(null);
+        setOverId(null);
         if (!event.over) {
             return;
         }
+        const sourceId = event.active.id;
         const sourceRow = getRowById(sourceId);
-        const destinationRow = event.over.id;
-        if (
-            !destinationRow.startsWith("row-") ||
-            sourceRow === destinationRow
-        ) {
-            return;
-        }
         const sourceClone = Array.from(tierState[sourceRow]);
         const sourceIndex = sourceClone.indexOf(sourceId);
         const [removedItem] = sourceClone.splice(sourceIndex, 1);
-        const destinationClone = Array.from(tierState[destinationRow]);
-        destinationClone.push(removedItem);
-        setTierState((old) => {
-            return {
-                ...old,
-                [destinationRow]: destinationClone,
-                [sourceRow]: sourceClone,
-            };
-        });
+        const destinationId = event.over.id;
+        console.log(sourceId, destinationId);
+        if (destinationId.startsWith("row-")) {
+            if (sourceRow === destinationId) {
+                sourceClone.push(removedItem);
+                setTierState((old) => {
+                    return {
+                        ...old,
+                        [sourceRow]: sourceClone,
+                    };
+                });
+            } else {
+                const destinationClone = Array.from(tierState[destinationId]);
+                destinationClone.push(removedItem);
+                setTierState((old) => {
+                    return {
+                        ...old,
+                        [destinationId]: destinationClone,
+                        [sourceRow]: sourceClone,
+                    };
+                });
+            }
+        } else {
+            const destinationRow = getRowById(destinationId);
+            if (sourceRow === destinationRow) {
+                const destinationIndex = sourceClone.indexOf(destinationId);
+                sourceClone.splice(destinationIndex, 0, removedItem);
+                setTierState((old) => {
+                    return {
+                        ...old,
+                        [sourceRow]: sourceClone,
+                    };
+                });
+            } else {
+                const destinationClone = Array.from(tierState[destinationRow]);
+                const destinationIndex =
+                    destinationClone.indexOf(destinationId);
+                destinationClone.splice(destinationIndex, 0, removedItem);
+                setTierState((old) => {
+                    return {
+                        ...old,
+                        [destinationRow]: destinationClone,
+                        [sourceRow]: sourceClone,
+                    };
+                });
+            }
+        }
     };
 
     return (
-        <DndContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+        <DndContext
+            // collisionDetection={closestCorners}
+            onDragEnd={onDragEnd}
+            onDragOver={onDragOver}
+            onDragStart={onDragStart}
+        >
             <Box
                 className="main"
                 sx={{
@@ -82,6 +133,8 @@ export default function TierList() {
                             key={rowId}
                             rowId={rowId}
                             items={tierState[rowId]}
+                            activeId={activeId}
+                            overId={overId}
                         />
                     ))}
                     <Row
@@ -89,6 +142,8 @@ export default function TierList() {
                         rowId={BOTTOM_ROW_ID}
                         items={tierState[BOTTOM_ROW_ID]}
                         isBottom
+                        activeId={activeId}
+                        overId={overId}
                     />
                 </Grid>
             </Box>
