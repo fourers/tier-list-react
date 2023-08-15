@@ -17,8 +17,36 @@ const initialiseData = () => {
 export default function TierList() {
     const [tierState, setTierState] = useState(initialiseData());
 
+    const getRowById = (itemId) => {
+        const matchingRows = data.rowOrder.filter((row) => tierState[row].includes(itemId));
+        if (matchingRows.length > 0) {
+            return matchingRows[0];
+        }
+        return BOTTOM_ROW_ID;
+    }
+
     const onDragEnd = (event) => {
         console.log(event);
+        if (!event.over) {
+            return;
+        }
+        const sourceId = event.active.id;
+        const sourceRow = getRowById(sourceId);
+        const destinationRow = event.over.id;
+        if (sourceRow != destinationRow) {
+            const sourceClone = Array.from(tierState[sourceRow]);
+            const sourceIndex = sourceClone.indexOf(sourceId);
+            const [removedItem] = sourceClone.splice(sourceIndex, 1);
+            const destinationClone = Array.from(tierState[destinationRow]);
+            destinationClone.push(removedItem);
+            setTierState((old) => {
+                return {
+                    ...old,
+                    [destinationRow]: destinationClone,
+                    [sourceRow]: sourceClone,
+                };
+            });
+        }
     };
 
     return (
