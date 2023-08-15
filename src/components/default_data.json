@@ -30,9 +30,21 @@
         }
     },
     "items": {
+        "connor6Cheer": {
+            "name": "connor6Cheer",
+            "src": "emotes/connor6Cheer.png"
+        },
         "connor6Frog": {
             "name": "connor6Frog",
             "src": "emotes/connor6Frog.png"
+        },
+        "connor6Froggy": {
+            "name": "connor6Froggy",
+            "src": "emotes/connor6Froggy.png"
+        },
+        "connor6Gun": {
+            "name": "connor6Gun",
+            "src": "emotes/connor6Gun.png"
         },
         "connor6Homie": {
             "name": "connor6Homie",
@@ -49,8 +61,57 @@
         "connor6Leap": {
             "name": "connor6Leap",
             "src": "emotes/connor6Leap.png"
+        },
+        "connor6Nasty": {
+            "name": "connor6Nasty",
+            "src": "emotes/connor6Nasty.png"
+        },
+        "connor6Pride": {
+            "name": "connor6Pride",
+            "src": "emotes/connor6Pride.png"
+        },
+        "connor6Silly": {
+            "name": "connor6Silly",
+            "src": "emotes/connor6Silly.png"
+        },
+        "connor6Stare": {
+            "name": "connor6Stare",
+            "src": "emotes/connor6Stare.png"
+        },
+        "connor6USA": {
+            "name": "connor6USA",
+            "src": "emotes/connor6USA.png"
+        },
+        "connor6Yaddas": {
+            "name": "connor6Yaddas",
+            "src": "emotes/connor6Yaddas.png"
+        },
+        "connor6283": {
+            "name": "connor6283",
+            "src": "emotes/connor6283.png"
+        },
+        "connor61984": {
+            "name": "connor61984",
+            "src": "emotes/connor61984.png"
         }
     },
     "rowOrder": ["row-1", "row-2", "row-3", "row-4", "row-5"],
-    "itemOrder": ["connor6Frog", "connor6Homie", "connor6Kiss", "connor6L", "connor6Leap"]
+    "itemOrder": [
+        "connor6Cheer",
+        "connor6Frog",
+        "connor6Froggy",
+        "connor6Gun",
+        "connor6Homie",
+        "connor6Kiss",
+        "connor6L",
+        "connor6Leap",
+        "connor6Nasty",
+        "connor6Pride",
+        "connor6Silly",
+        "connor6Stare",
+        "connor6USA",
+        "connor6Yaddas",
+        "connor6283",
+        "connor61984"
+    ]
 }

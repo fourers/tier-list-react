@@ -17,6 +17,7 @@ const getRowStyle = (isBottom) => {
         borderColor: "black",
         borderStyle: "solid",
         minHeight: ROW_MIN_HEIGHT,
+        width: "100%",
     };
     if (isBottom) {
         return {
@@ -40,11 +41,21 @@ const getBackgroundStyle = (isBottom) => {
     return { backgroundColor: ROW_BACKGROUND_COLOUR };
 };
 
-const getDroppableStyle = (isBottom) => {
-    if (isBottom) {
-        return { height: "100%" };
-    }
-    return {};
+const getDroppableStyle = (droppableProps) => {
+    const defaultStyle = {
+        display: "flex",
+        minHeight: IMG_BLOCK_WITH_MARGIN_HEIGHT,
+        overflow: "auto",
+        flexWrap: "wrap",
+    };
+    const styleCopy = Object.assign({}, droppableProps.style)
+    return {
+        ...droppableProps,
+        style: {
+            ...styleCopy,
+            ...defaultStyle,
+        }
+    };
 }
 
 export default function Row({ rowId, items, isBottom }) {
@@ -91,13 +102,7 @@ export default function Row({ rowId, items, isBottom }) {
                     {(provided, _snapshot) => (
                         <div
                             ref={provided.innerRef}
-                            style={{
-                                ...getDroppableStyle(isBottom),
-                                display: "flex",
-                                minHeight: IMG_BLOCK_WITH_MARGIN_HEIGHT,
-                                overflow: "auto",
-                            }}
-                            {...provided.droppableProps}
+                            {...getDroppableStyle(provided.droppableProps)}
                         >
                             {items.map((item, index) => (
                                 <DraggableItem

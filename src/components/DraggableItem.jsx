@@ -10,7 +10,7 @@ const getDraggableProps = (draggableProps, dragHandleProps) => {
         ...dragHandleProps,
     };
     const styleCopy = Object.assign({}, props.style)
-    styleCopy.height = IMG_BLOCK_HEIGHT
+    styleCopy.height = "unset";
     props.style = styleCopy;
     return props;
 }
