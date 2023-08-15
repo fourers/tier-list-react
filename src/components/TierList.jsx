@@ -56,9 +56,10 @@ export default function TierList() {
             <Box
                 className="main"
                 sx={{
-                    height: "calc(100vh - 40px)",
+                    minHeight: "calc(100vh - 40px)",
+                    minWidth: "300px",
                     padding: "20px",
-                    width: "100%",
+                    width: "calc(100% - 40px)",
                 }}
             >
                 <Grid container direction="column" style={{ height: "100%" }}>
