@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
 import Droppable from "./Droppable";
+import GhostItem from "./GhostItem";
 import Item from "./Item";
 import {
     ROW_BACKGROUND_COLOUR,
@@ -50,6 +51,7 @@ const getDraggablePanelStyle = (isBottom) => {
 };
 
 export default function Row({ rowId, items, isBottom, activeId, overId }) {
+    const isOver = overId === rowId;
     return (
         <Grid container sx={getRowStyle(isBottom)} xs={isBottom ? true : false}>
             {!isBottom && (
@@ -85,6 +87,7 @@ export default function Row({ rowId, items, isBottom, activeId, overId }) {
                             overId={overId}
                         />
                     ))}
+                    {isOver ? <GhostItem id={activeId} /> : null}
                 </Droppable>
             </Grid>
         </Grid>

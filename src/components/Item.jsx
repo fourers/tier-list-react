@@ -1,26 +1,7 @@
 import { useDroppable } from "@dnd-kit/core";
 import { Draggable } from "./Draggable";
-import { IMG_BLOCK_HEIGHT, IMG_BLOCK_MARGIN } from "./constants";
 import data from "./default_data.json";
-
-const getImgStyle = (isActive) => {
-    const defaultStyle = {
-        display: "block",
-        height: IMG_BLOCK_HEIGHT,
-        marginBottom: IMG_BLOCK_MARGIN,
-        marginLeft: IMG_BLOCK_MARGIN,
-        marginRight: IMG_BLOCK_MARGIN,
-        marginTop: IMG_BLOCK_MARGIN,
-        userSelect: "none",
-    };
-    if (isActive) {
-        return {
-            ...defaultStyle,
-            opacity: 0.5,
-        };
-    }
-    return defaultStyle;
-};
+import { getImgStyle } from "./style";
 
 export default function Item(props) {
     const { setNodeRef } = useDroppable({
@@ -43,14 +24,13 @@ export default function Item(props) {
                     <img
                         src={data.items[props.activeId].src}
                         style={getImgStyle(true)}
-                        title={data.items[props.activeId].name}
                     />
                 )}
                 {(!isActive || isOver || !props.overId) && (
                     <img
                         src={data.items[props.id].src}
                         style={getImgStyle(isActive)}
-                        title={data.items[props.id].name}
+                        title={!isActive ? data.items[props.id].name : null}
                     />
                 )}
             </div>

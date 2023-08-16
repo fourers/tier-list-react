@@ -14,7 +14,6 @@ export default function Droppable(props) {
                 display: "flex",
                 flexWrap: "wrap",
                 height: "100%",
-                // zIndex: 0,
             }}
         >
             {props.children}
