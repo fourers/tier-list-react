@@ -2,6 +2,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
+import data from "../default_data.json";
 import Droppable from "./Droppable";
 import GhostItem from "./GhostItem";
 import Item from "./Item";
@@ -10,7 +11,6 @@ import {
     ROW_MIN_HEIGHT,
     ROW_PADDING,
 } from "./constants";
-import data from "./default_data.json";
 
 const getRowStyle = (isBottom) => {
     const defaultStyle = {
@@ -60,9 +60,8 @@ export default function Row({ rowId, items, isBottom, activeId, overId }) {
                     sx={{
                         backgroundColor: data.rows[rowId].colour,
                         color: "black",
-                        maxWidth: "120px",
-                        minWidth: "90px",
                         textAlign: "center",
+                        width: "115px",
                     }}
                 >
                     <Stack
@@ -71,7 +70,7 @@ export default function Row({ rowId, items, isBottom, activeId, overId }) {
                         justifyContent="center"
                         style={{ height: "100%" }}
                     >
-                        <Typography variant="h5">
+                        <Typography variant="h6">
                             {data.rows[rowId].name}
                         </Typography>
                     </Stack>

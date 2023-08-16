@@ -1,6 +1,6 @@
 import { useDroppable } from "@dnd-kit/core";
+import data from "../default_data.json";
 import { Draggable } from "./Draggable";
-import data from "./default_data.json";
 import { getImgStyle } from "./style";
 
 export default function Item(props) {

@@ -2,21 +2,18 @@ import { DndContext, DragOverlay } from "@dnd-kit/core";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import data from "../default_data.json";
+import { update } from "../store/tiersSlice";
 import Item from "./Item";
 import Row from "./Row";
 import { BOTTOM_ROW_ID } from "./constants";
-import data from "./default_data.json";
-
-const initialiseData = () => {
-    const tierData = { [BOTTOM_ROW_ID]: data.itemOrder };
-    data.rowOrder.forEach((row) => {
-        tierData[row] = [];
-    });
-    return tierData;
-};
 
 export default function TierList() {
-    const [tierState, setTierState] = useState(initialiseData());
+    const tierState = useSelector((state) => state.tiers.value);
+    const dispatch = useDispatch();
+    const setTierState = (newValue) => dispatch(update(newValue));
+
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);
 
@@ -41,7 +38,6 @@ export default function TierList() {
     };
 
     const onDragEnd = (event) => {
-        console.log(event);
         setActiveId(null);
         setOverId(null);
         if (!event.over) {
@@ -56,21 +52,13 @@ export default function TierList() {
         if (destinationId.startsWith("row-")) {
             if (sourceRow === destinationId) {
                 sourceClone.push(removedItem);
-                setTierState((old) => {
-                    return {
-                        ...old,
-                        [sourceRow]: sourceClone,
-                    };
-                });
+                setTierState({ [sourceRow]: sourceClone });
             } else {
                 const destinationClone = Array.from(tierState[destinationId]);
                 destinationClone.push(removedItem);
-                setTierState((old) => {
-                    return {
-                        ...old,
-                        [destinationId]: destinationClone,
-                        [sourceRow]: sourceClone,
-                    };
+                setTierState({
+                    [destinationId]: destinationClone,
+                    [sourceRow]: sourceClone,
                 });
             }
         } else {
@@ -81,23 +69,15 @@ export default function TierList() {
                 }
                 const destinationIndex = sourceClone.indexOf(destinationId);
                 sourceClone.splice(destinationIndex, 0, removedItem);
-                setTierState((old) => {
-                    return {
-                        ...old,
-                        [sourceRow]: sourceClone,
-                    };
-                });
+                setTierState({ [sourceRow]: sourceClone });
             } else {
                 const destinationClone = Array.from(tierState[destinationRow]);
                 const destinationIndex =
                     destinationClone.indexOf(destinationId);
                 destinationClone.splice(destinationIndex, 0, removedItem);
-                setTierState((old) => {
-                    return {
-                        ...old,
-                        [destinationRow]: destinationClone,
-                        [sourceRow]: sourceClone,
-                    };
+                setTierState({
+                    [destinationRow]: destinationClone,
+                    [sourceRow]: sourceClone,
                 });
             }
         }
