@@ -1,16 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BOTTOM_ROW_ID } from "../components/constants";
-import data from "../default_data.json";
-
-const initialiseData = () => {
-    const tierData = { [BOTTOM_ROW_ID]: data.itemOrder };
-    data.rowOrder.forEach((row) => {
-        tierData[row] = [];
-    });
-    return tierData;
-};
-
-const initialState = initialiseData();
+import { initialState } from "./initialData";
 
 export const tiersSlice = createSlice({
     initialState: {
@@ -18,6 +7,9 @@ export const tiersSlice = createSlice({
     },
     name: "tiers",
     reducers: {
+        reset: (state) => {
+            state.value = initialState;
+        },
         update: (state, action) => {
             state.value = {
                 ...state.value,
@@ -27,6 +19,6 @@ export const tiersSlice = createSlice({
     },
 });
 
-export const { update } = tiersSlice.actions;
+export const { reset, update } = tiersSlice.actions;
 
 export default tiersSlice.reducer;
