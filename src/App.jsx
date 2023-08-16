@@ -1,14 +1,15 @@
 import "./App.css";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import TierList from "./components/TierList";
-import store from "./store/store";
+import { persistor, store } from "./store/store";
 
-function App() {
+export default function App() {
     return (
         <Provider store={store}>
-            <TierList />
+            <PersistGate loading={null} persistor={persistor}>
+                <TierList />
+            </PersistGate>
         </Provider>
     );
 }
-
-export default App;

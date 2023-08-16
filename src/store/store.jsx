@@ -1,10 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import tiersReducer from "./tiersSlice";
 
-const store = configureStore({
+const persistConfig = {
+    key: "root",
+    storage,
+};
+
+export const store = configureStore({
     reducer: {
-        tiers: tiersReducer,
+        tiers: persistReducer(persistConfig, tiersReducer),
     },
 });
 
-export default store;
+export const persistor = persistStore(store);
