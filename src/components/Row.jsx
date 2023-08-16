@@ -77,11 +77,14 @@ export default function Row({ rowId, items, isBottom, activeId, overId }) {
             )}
             <Grid xs sx={getDraggablePanelStyle(isBottom)}>
                 <Droppable key={rowId} id={rowId}>
-                    {items.map((itemId) =>
-                        itemId === activeId ? null : (
-                            <Item key={itemId} id={itemId} overId={overId} />
-                        ),
-                    )}
+                    {items.map((itemId) => (
+                        <Item
+                            key={itemId}
+                            id={itemId}
+                            activeId={activeId}
+                            overId={overId}
+                        />
+                    ))}
                 </Droppable>
             </Grid>
         </Grid>

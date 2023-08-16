@@ -30,24 +30,19 @@ export default function TierList() {
         return BOTTOM_ROW_ID;
     };
 
-    const getNextId = (itemId) => {
-        const row = getRowById(itemId);
-        const currentIndex = tierState[row].indexOf(itemId);
-        return tierState[row][currentIndex + 1];
-    };
-
     const onDragStart = (event) => {
         const activeId = event.active.id;
         setActiveId(activeId);
-        const nextId = getNextId(activeId);
-        setOverId(nextId);
+        setOverId(null);
     };
 
     const onDragOver = (event) => {
         setOverId(event.over ? event.over.id : null);
+        console.log(event, event.collisions, activeId, overId);
     };
 
     const onDragEnd = (event) => {
+        console.log(event);
         setActiveId(null);
         setOverId(null);
         if (!event.over) {
@@ -59,7 +54,6 @@ export default function TierList() {
         const sourceIndex = sourceClone.indexOf(sourceId);
         const [removedItem] = sourceClone.splice(sourceIndex, 1);
         const destinationId = event.over.id;
-        console.log(sourceId, destinationId);
         if (destinationId.startsWith("row-")) {
             if (sourceRow === destinationId) {
                 sourceClone.push(removedItem);
@@ -83,6 +77,9 @@ export default function TierList() {
         } else {
             const destinationRow = getRowById(destinationId);
             if (sourceRow === destinationRow) {
+                if (sourceId === destinationId) {
+                    return;
+                }
                 const destinationIndex = sourceClone.indexOf(destinationId);
                 sourceClone.splice(destinationIndex, 0, removedItem);
                 setTierState((old) => {
@@ -109,7 +106,6 @@ export default function TierList() {
 
     return (
         <DndContext
-            // collisionDetection={closestCorners}
             onDragEnd={onDragEnd}
             onDragOver={onDragOver}
             onDragStart={onDragStart}
