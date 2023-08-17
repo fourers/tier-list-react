@@ -12,7 +12,7 @@ import { BOTTOM_ROW_ID } from "./constants";
 export default function TierList() {
     const tierState = useSelector((state) => state.tiers.value);
     const dispatch = useDispatch();
-    const updateTierState = (newValue) => dispatch(update(newValue));
+    const setTierState = (newValue) => dispatch(update(newValue));
 
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);
@@ -49,37 +49,36 @@ export default function TierList() {
         const sourceIndex = sourceClone.indexOf(sourceId);
         const [removedItem] = sourceClone.splice(sourceIndex, 1);
         const destinationId = event.over.id;
-        if (destinationId.startsWith("row-")) {
-            if (sourceRow === destinationId) {
+        const destinationRow = destinationId.startsWith("row-")
+            ? destinationId
+            : getRowById(destinationId);
+        if (sourceRow === destinationRow) {
+            if (destinationId === sourceId) {
+                return;
+            } else if (destinationId === destinationRow) {
                 sourceClone.push(removedItem);
-                updateTierState({ [sourceRow]: sourceClone });
             } else {
-                const destinationClone = Array.from(tierState[destinationId]);
-                destinationClone.push(removedItem);
-                updateTierState({
-                    [destinationId]: destinationClone,
-                    [sourceRow]: sourceClone,
-                });
-            }
-        } else {
-            const destinationRow = getRowById(destinationId);
-            if (sourceRow === destinationRow) {
-                if (sourceId === destinationId) {
-                    return;
-                }
                 const destinationIndex = sourceClone.indexOf(destinationId);
                 sourceClone.splice(destinationIndex, 0, removedItem);
-                updateTierState({ [sourceRow]: sourceClone });
+            }
+            setTierState((prevState) => ({
+                ...prevState,
+                [sourceRow]: sourceClone,
+            }));
+        } else {
+            const destinationClone = Array.from(tierState[destinationRow]);
+            if (destinationId === destinationRow) {
+                destinationClone.push(removedItem);
             } else {
-                const destinationClone = Array.from(tierState[destinationRow]);
                 const destinationIndex =
                     destinationClone.indexOf(destinationId);
                 destinationClone.splice(destinationIndex, 0, removedItem);
-                updateTierState({
-                    [destinationRow]: destinationClone,
-                    [sourceRow]: sourceClone,
-                });
             }
+            setTierState((prevState) => ({
+                ...prevState,
+                [destinationRow]: destinationClone,
+                [sourceRow]: sourceClone,
+            }));
         }
     };
 
