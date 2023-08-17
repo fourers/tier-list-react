@@ -64,20 +64,26 @@ export default function Row({ rowId, items, isBottom, activeId, overId }) {
                         width: "115px",
                     }}
                 >
-                    <Stack
-                        alignItems="center"
-                        direction="column"
-                        justifyContent="center"
-                        style={{ height: "100%" }}
-                    >
-                        <Typography variant="h6">
-                            {data.rows[rowId].name}
-                        </Typography>
-                    </Stack>
+                    <Droppable key={`side-${rowId}`} id={rowId}>
+                        <Stack
+                            alignItems="center"
+                            direction="column"
+                            justifyContent="center"
+                            style={{ height: "100%", width: "100%" }}
+                        >
+                            <Typography variant="h6">
+                                {data.rows[rowId].name}
+                            </Typography>
+                        </Stack>
+                    </Droppable>
                 </Grid>
             )}
             <Grid xs sx={getDraggablePanelStyle(isBottom)}>
-                <Droppable key={rowId} id={rowId}>
+                <Droppable
+                    key={rowId}
+                    id={rowId}
+                    style={{ alignContent: "flex-start", flexWrap: "wrap" }}
+                >
                     {items.map((itemId) => (
                         <Item
                             key={itemId}

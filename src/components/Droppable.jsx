@@ -5,15 +5,16 @@ export default function Droppable(props) {
     const { setNodeRef } = useDroppable({
         id: props.id,
     });
+    const style = props.style ? props.style : {};
 
     return (
         <div
             ref={setNodeRef}
             style={{
-                alignContent: "flex-start",
+                ...style,
                 display: "flex",
-                flexWrap: "wrap",
                 height: "100%",
+                width: "100%",
             }}
         >
             {props.children}
