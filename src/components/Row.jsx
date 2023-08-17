@@ -2,9 +2,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
-import { useDispatch } from "react-redux";
 import data from "../default_data.json";
-import { reset } from "../store/tiersSlice";
 import Droppable from "./Droppable";
 import GhostItem from "./GhostItem";
 import Item from "./Item";
@@ -53,18 +51,6 @@ const getDraggablePanelStyle = (isBottom) => {
 };
 
 export default function Row({ rowId, items, isBottom, activeId, overId }) {
-    const dispatch = useDispatch();
-    const resetState = () => dispatch(reset());
-
-    const handleContextMenu = (event) => {
-        event.preventDefault();
-        resetState();
-    };
-
-    const suppressContextMenu = (event) => {
-        event.preventDefault();
-    };
-
     const isOver = overId === rowId;
     return (
         <Grid container sx={getRowStyle(isBottom)} xs={isBottom ? true : false}>
@@ -90,13 +76,7 @@ export default function Row({ rowId, items, isBottom, activeId, overId }) {
                     </Stack>
                 </Grid>
             )}
-            <Grid
-                xs
-                sx={getDraggablePanelStyle(isBottom)}
-                onContextMenu={
-                    isBottom ? handleContextMenu : suppressContextMenu
-                }
-            >
+            <Grid xs sx={getDraggablePanelStyle(isBottom)}>
                 <Droppable key={rowId} id={rowId}>
                     {items.map((itemId) => (
                         <Item
