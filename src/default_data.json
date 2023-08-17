@@ -13,18 +13,25 @@
     "connor6ChaoDance",
     "connor6Cheadle",
     "connor6Cheer",
+    "connor6Coco",
+    "connor6Comedy",
     "connor6Croc",
     "connor6D",
     "connor6DoItToEm",
+    "connor6Drake",
     "connor6FindGod",
     "connor6Frog",
     "connor6FrogDance",
     "connor6Froggy",
+    "connor6FroggyHD",
+    "connor6GoldFrog",
+    "connor6Graphics",
     "connor6Gun",
     "connor6Homie",
     "connor6Inches",
     "connor6JFK",
     "connor6Joy",
+    "connor6Juice",
     "connor6Kermy",
     "connor6Kiss",
     "connor6L",
@@ -34,18 +41,22 @@
     "connor6Manning",
     "connor6Matt",
     "connor6Nasty",
+    "connor6NFT",
     "connor6Nintendo",
     "connor6Peepo",
     "connor6Pon",
+    "connor6Pray",
     "connor6Pride",
     "connor6Prime",
     "connor6Sauve",
+    "connor6Shiny",
     "connor6Silly",
     "connor6Sip",
     "connor6Stare",
     "connor6Subs",
     "connor6Sus",
     "connor6T",
+    "connor6ThatGuysFace",
     "connor6Typers",
     "connor6USA",
     "connor6Weird",
@@ -106,6 +117,14 @@
       "name": "connor6Cheer",
       "src": "items/connor6Cheer.gif"
     },
+    "connor6Coco": {
+      "name": "connor6Coco",
+      "src": "items/connor6Coco.png"
+    },
+    "connor6Comedy": {
+      "name": "connor6Comedy",
+      "src": "items/connor6Comedy.png"
+    },
     "connor6Croc": {
       "name": "connor6Croc",
       "src": "items/connor6Croc.png"
@@ -117,6 +136,10 @@
     "connor6DoItToEm": {
       "name": "connor6DoItToEm",
       "src": "items/connor6DoItToEm.png"
+    },
+    "connor6Drake": {
+      "name": "connor6Drake",
+      "src": "items/connor6Drake.png"
     },
     "connor6FindGod": {
       "name": "connor6FindGod",
@@ -133,6 +156,18 @@
     "connor6Froggy": {
       "name": "connor6Froggy",
       "src": "items/connor6Froggy.png"
+    },
+    "connor6FroggyHD": {
+      "name": "connor6FroggyHD",
+      "src": "items/connor6FroggyHD.png"
+    },
+    "connor6GoldFrog": {
+      "name": "connor6GoldFrog",
+      "src": "items/connor6GoldFrog.png"
+    },
+    "connor6Graphics": {
+      "name": "connor6Graphics",
+      "src": "items/connor6Graphics.png"
     },
     "connor6Gun": {
       "name": "connor6Gun",
@@ -153,6 +188,10 @@
     "connor6Joy": {
       "name": "connor6Joy",
       "src": "items/connor6Joy.png"
+    },
+    "connor6Juice": {
+      "name": "connor6Juice",
+      "src": "items/connor6Juice.png"
     },
     "connor6Kermy": {
       "name": "connor6Kermy",
@@ -190,6 +229,10 @@
       "name": "connor6Nasty",
       "src": "items/connor6Nasty.png"
     },
+    "connor6NFT": {
+      "name": "connor6NFT",
+      "src": "items/connor6NFT.png"
+    },
     "connor6Nintendo": {
       "name": "connor6Nintendo",
       "src": "items/connor6Nintendo.png"
@@ -202,6 +245,10 @@
       "name": "connor6Pon",
       "src": "items/connor6Pon.png"
     },
+    "connor6Pray": {
+      "name": "connor6Pray",
+      "src": "items/connor6Pray.png"
+    },
     "connor6Pride": {
       "name": "connor6Pride",
       "src": "items/connor6Pride.png"
@@ -213,6 +260,10 @@
     "connor6Sauve": {
       "name": "connor6Sauve",
       "src": "items/connor6Sauve.png"
+    },
+    "connor6Shiny": {
+      "name": "connor6Shiny",
+      "src": "items/connor6Shiny.png"
     },
     "connor6Silly": {
       "name": "connor6Silly",
@@ -237,6 +288,10 @@
     "connor6T": {
       "name": "connor6T",
       "src": "items/connor6T.png"
+    },
+    "connor6ThatGuysFace": {
+      "name": "connor6ThatGuysFace",
+      "src": "items/connor6ThatGuysFace.png"
     },
     "connor6Typers": {
       "name": "connor6Typers",
