@@ -43,19 +43,23 @@ rows.forEach((row, index) => {
 });
 
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
-const emoteDirectory = `${currentDirectory}/../public/emotes`;
-const emotes = fs.readdirSync(emoteDirectory);
+const itemDirectory = `${currentDirectory}/../public/items`;
+const itemFiles = fs.readdirSync(itemDirectory);
 
 const items = {};
 const itemOrder = [];
 
-emotes.forEach((emotePath) => {
-    const pathObject = path.parse(emotePath);
-    items[pathObject.name] = {
-        name: pathObject.name,
-        src: `emotes/${emotePath}`,
+itemFiles.forEach((filePath) => {
+    const pathObject = path.parse(filePath);
+    const pathName = pathObject.name;
+    if (pathName.startsWith("row-")) {
+        throw new Error(`File name "${filePath}" cannot start with "row-"`);
+    }
+    items[pathName] = {
+        name: pathName,
+        src: `items/${filePath}`,
     };
-    itemOrder.push(pathObject.name);
+    itemOrder.push(pathName);
 });
 
 const dataOutput = {
@@ -67,3 +71,5 @@ const dataOutput = {
 
 const outputPath = `${currentDirectory}/../src/default_data.json`;
 fs.writeFileSync(outputPath, JSON.stringify(dataOutput, null, 2));
+
+console.log(`Updated: ${outputPath}`);
