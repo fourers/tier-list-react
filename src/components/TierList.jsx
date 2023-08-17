@@ -1,10 +1,12 @@
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useScreenshot } from "use-react-screenshot";
 import data from "../default_data.json";
 import { update } from "../store/tiersSlice";
+import Footer from "./Footer";
 import Item from "./Item";
 import Row from "./Row";
 import { BOTTOM_ROW_ID } from "./constants";
@@ -16,6 +18,9 @@ export default function TierList() {
 
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);
+
+    const ref = createRef(null);
+    const [image, takeScreenshot] = useScreenshot();
 
     const getRowById = (itemId) => {
         const matchingRows = data.rowOrder.filter((row) =>
@@ -102,15 +107,17 @@ export default function TierList() {
                     direction="column"
                     style={{ minHeight: "calc(100vh - 40px)" }}
                 >
-                    {data.rowOrder.map((rowId) => (
-                        <Row
-                            key={rowId}
-                            rowId={rowId}
-                            items={tierState[rowId]}
-                            activeId={activeId}
-                            overId={overId}
-                        />
-                    ))}
+                    <div ref={ref}>
+                        {data.rowOrder.map((rowId) => (
+                            <Row
+                                key={rowId}
+                                rowId={rowId}
+                                items={tierState[rowId]}
+                                activeId={activeId}
+                                overId={overId}
+                            />
+                        ))}
+                    </div>
                     <Row
                         key={BOTTOM_ROW_ID}
                         rowId={BOTTOM_ROW_ID}
@@ -120,6 +127,10 @@ export default function TierList() {
                         overId={overId}
                     />
                 </Grid>
+                <Footer
+                    image={image}
+                    takeScreenshot={() => takeScreenshot(ref.current)}
+                />
             </Box>
             <DragOverlay>
                 {activeId ? <Item key={activeId} id={activeId} /> : null}
