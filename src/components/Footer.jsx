@@ -30,7 +30,7 @@ export default function Footer(props) {
         <div
             style={{
                 bottom: "15px",
-                position: "absolute",
+                position: "fixed",
                 right: "15px",
                 zIndex: 100,
             }}
