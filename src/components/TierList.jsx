@@ -99,7 +99,7 @@ export default function TierList() {
                     minHeight: "calc(100vh - 40px)",
                     minWidth: "300px",
                     padding: "20px",
-                    width: "calc(100% - 40px)",
+                    width: "100%",
                 }}
             >
                 <Grid
