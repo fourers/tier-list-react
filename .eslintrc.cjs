@@ -20,7 +20,7 @@ module.exports = {
     ],
     'prettier/prettier': 'error',
     'react/prop-types': 0,
-    'no-unused-vars': ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    'no-unused-vars': ['error', { 'argsIgnorePattern': '^_', 'varsIgnorePattern': '^_' }],
     'react/jsx-uses-react': 2,
     'sort-keys': 'error',
     'import/no-unresolved': 0,

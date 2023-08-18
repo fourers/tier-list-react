@@ -1,3 +1,4 @@
+import DeleteIcon from "@mui/icons-material/Delete";
 import DownloadIcon from "@mui/icons-material/Download";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Button from "@mui/material/Button";
@@ -8,6 +9,8 @@ import Stack from "@mui/material/Stack";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { reset } from "../store/tiersSlice";
+import Droppable from "./Droppable";
+import { BIN_ROW_ID } from "./constants";
 
 export default function Footer(props) {
     const [open, setOpen] = useState(false);
@@ -54,6 +57,20 @@ export default function Footer(props) {
                 >
                     <RefreshIcon />
                 </Fab>
+                <Droppable id={BIN_ROW_ID} key={BIN_ROW_ID}>
+                    <Fab
+                        aria-label="reset"
+                        color={
+                            props.overId === BIN_ROW_ID
+                                ? "secondary"
+                                : "primary"
+                        }
+                        size="medium"
+                        title="Drag to Bin"
+                    >
+                        <DeleteIcon />
+                    </Fab>
+                </Droppable>
             </Stack>
             <Dialog
                 fullWidth={true}

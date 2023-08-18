@@ -7,9 +7,9 @@ import { useScreenshot } from "use-react-screenshot";
 import data from "../default_data.json";
 import { update } from "../store/tiersSlice";
 import Footer from "./Footer";
-import Item from "./Item";
+import Image from "./Image";
 import Row from "./Row";
-import { BOTTOM_ROW_ID } from "./constants";
+import { BIN_ROW_ID, BOTTOM_ROW_ID } from "./constants";
 
 export default function TierList() {
     const tierState = useSelector((state) => state.tiers.value);
@@ -70,11 +70,11 @@ export default function TierList() {
                 ...prevState,
                 [sourceRow]: sourceClone,
             }));
-        } else {
+        } else if (destinationRow !== BIN_ROW_ID) {
             const destinationClone = Array.from(tierState[destinationRow]);
             if (destinationId === destinationRow) {
                 destinationClone.push(removedItem);
-            } else {
+            } else if (destinationRow !== BIN_ROW_ID) {
                 const destinationIndex =
                     destinationClone.indexOf(destinationId);
                 destinationClone.splice(destinationIndex, 0, removedItem);
@@ -82,6 +82,11 @@ export default function TierList() {
             setTierState((prevState) => ({
                 ...prevState,
                 [destinationRow]: destinationClone,
+                [sourceRow]: sourceClone,
+            }));
+        } else {
+            setTierState((prevState) => ({
+                ...prevState,
                 [sourceRow]: sourceClone,
             }));
         }
@@ -130,11 +135,14 @@ export default function TierList() {
                 </Grid>
                 <Footer
                     image={image}
+                    overId={overId}
                     takeScreenshot={() => takeScreenshot(ref.current)}
                 />
             </Box>
             <DragOverlay>
-                {activeId ? <Item id={activeId} key={activeId} /> : null}
+                {activeId ? (
+                    <Image id={activeId} solid={overId !== BIN_ROW_ID} />
+                ) : null}
             </DragOverlay>
         </DndContext>
     );
