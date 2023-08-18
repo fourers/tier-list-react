@@ -35,7 +35,7 @@ const getRowStyle = (isBottom, isLast) => {
     };
 };
 
-const getDraggablePanelStyle = (isBottom) => {
+const getPanelStyle = (isBottom) => {
     const defaultStyle = {
         padding: ROW_PADDING,
     };
@@ -61,22 +61,22 @@ export default function Row({
 }) {
     const isOver = overId === rowId;
     return (
-        <Grid
-            container
-            sx={getRowStyle(isBottom, isLast)}
-            xs={isBottom ? true : false}
-        >
-            {!isBottom && (
-                <Grid
-                    sx={{
-                        backgroundColor: data.rows[rowId].colour,
-                        color: "black",
-                        textAlign: "center",
-                        width: "115px",
-                    }}
-                    xs="auto"
-                >
-                    <Droppable id={rowId} key={`side-${rowId}`}>
+        <Droppable id={rowId} key={rowId}>
+            <Grid
+                container
+                sx={getRowStyle(isBottom, isLast)}
+                xs={isBottom ? true : false}
+            >
+                {!isBottom && (
+                    <Grid
+                        sx={{
+                            backgroundColor: data.rows[rowId].colour,
+                            color: "black",
+                            textAlign: "center",
+                            width: "115px",
+                        }}
+                        xs="auto"
+                    >
                         <Stack
                             alignItems="center"
                             direction="column"
@@ -87,26 +87,28 @@ export default function Row({
                                 {data.rows[rowId].name}
                             </Typography>
                         </Stack>
-                    </Droppable>
+                    </Grid>
+                )}
+                <Grid sx={getPanelStyle(isBottom)} xs>
+                    <div
+                        style={{
+                            alignContent: "flex-start",
+                            display: "flex",
+                            flexWrap: "wrap",
+                        }}
+                    >
+                        {items.map((itemId) => (
+                            <Item
+                                activeId={activeId}
+                                id={itemId}
+                                key={itemId}
+                                overId={overId}
+                            />
+                        ))}
+                        {isOver ? <GhostItem id={activeId} /> : null}
+                    </div>
                 </Grid>
-            )}
-            <Grid sx={getDraggablePanelStyle(isBottom)} xs>
-                <Droppable
-                    id={rowId}
-                    key={rowId}
-                    style={{ alignContent: "flex-start", flexWrap: "wrap" }}
-                >
-                    {items.map((itemId) => (
-                        <Item
-                            activeId={activeId}
-                            id={itemId}
-                            key={itemId}
-                            overId={overId}
-                        />
-                    ))}
-                    {isOver ? <GhostItem id={activeId} /> : null}
-                </Droppable>
             </Grid>
-        </Grid>
+        </Droppable>
     );
 }
