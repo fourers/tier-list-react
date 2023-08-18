@@ -37,41 +37,41 @@ export default function Footer(props) {
         >
             <Stack direction="row" spacing={2}>
                 <Fab
-                    color="primary"
                     aria-label="download"
-                    size="medium"
+                    color="primary"
                     onClick={handleClickOpen}
+                    size="medium"
                 >
                     <DownloadIcon />
                 </Fab>
                 <Fab
-                    color="primary"
                     aria-label="reset"
-                    size="medium"
+                    color="primary"
                     onClick={resetState}
+                    size="medium"
                 >
                     <DeleteIcon />
                 </Fab>
             </Stack>
             <Dialog
-                open={open}
-                onClose={handleClose}
-                maxWidth="md"
                 fullWidth={true}
+                maxWidth="md"
+                onClose={handleClose}
+                open={open}
             >
                 <DialogContent>
                     <Stack direction="column" spacing={2}>
+                        <img src={props.image} style={{ width: "100%" }} />
                         <Stack direction="row" justifyContent="center">
                             <Button
-                                variant="text"
-                                onClick={handleClose}
-                                href={props.image}
                                 download="tier_list.png"
+                                href={props.image}
+                                onClick={handleClose}
+                                variant="text"
                             >
                                 Download Image
                             </Button>
                         </Stack>
-                        <img src={props.image} style={{ width: "100%" }} />
                     </Stack>
                 </DialogContent>
             </Dialog>

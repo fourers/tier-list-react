@@ -11,7 +11,10 @@ export const tiersSlice = createSlice({
             state.value = initialState;
         },
         update: (state, action) => {
-            state.value = action.payload(state.value);
+            state.value =
+                action.payload instanceof Function
+                    ? action.payload(state.value)
+                    : action.payload;
         },
     },
 });

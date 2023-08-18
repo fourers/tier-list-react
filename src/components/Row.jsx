@@ -68,15 +68,15 @@ export default function Row({
         >
             {!isBottom && (
                 <Grid
-                    xs="auto"
                     sx={{
                         backgroundColor: data.rows[rowId].colour,
                         color: "black",
                         textAlign: "center",
                         width: "115px",
                     }}
+                    xs="auto"
                 >
-                    <Droppable key={`side-${rowId}`} id={rowId}>
+                    <Droppable id={rowId} key={`side-${rowId}`}>
                         <Stack
                             alignItems="center"
                             direction="column"
@@ -90,17 +90,17 @@ export default function Row({
                     </Droppable>
                 </Grid>
             )}
-            <Grid xs sx={getDraggablePanelStyle(isBottom)}>
+            <Grid sx={getDraggablePanelStyle(isBottom)} xs>
                 <Droppable
-                    key={rowId}
                     id={rowId}
+                    key={rowId}
                     style={{ alignContent: "flex-start", flexWrap: "wrap" }}
                 >
                     {items.map((itemId) => (
                         <Item
-                            key={itemId}
-                            id={itemId}
                             activeId={activeId}
+                            id={itemId}
+                            key={itemId}
                             overId={overId}
                         />
                     ))}

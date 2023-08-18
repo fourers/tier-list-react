@@ -25,5 +25,6 @@ module.exports = {
     'sort-keys': 'error',
     'import/no-unresolved': 0,
     'import/order': [2, { 'alphabetize': {'order': 'asc'}}],
+    'react/jsx-sort-props': 2,
   },
 }

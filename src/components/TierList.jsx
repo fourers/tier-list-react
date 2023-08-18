@@ -110,22 +110,22 @@ export default function TierList() {
                     <div ref={ref}>
                         {data.rowOrder.map((rowId, index) => (
                             <Row
-                                key={rowId}
-                                rowId={rowId}
-                                items={tierState[rowId]}
                                 activeId={activeId}
-                                overId={overId}
                                 isLast={index === data.rowOrder.length - 1}
+                                items={tierState[rowId]}
+                                key={rowId}
+                                overId={overId}
+                                rowId={rowId}
                             />
                         ))}
                     </div>
                     <Row
-                        key={BOTTOM_ROW_ID}
-                        rowId={BOTTOM_ROW_ID}
-                        items={tierState[BOTTOM_ROW_ID]}
-                        isBottom
                         activeId={activeId}
+                        isBottom
+                        items={tierState[BOTTOM_ROW_ID]}
+                        key={BOTTOM_ROW_ID}
                         overId={overId}
+                        rowId={BOTTOM_ROW_ID}
                     />
                 </Grid>
                 <Footer
@@ -134,7 +134,7 @@ export default function TierList() {
                 />
             </Box>
             <DragOverlay>
-                {activeId ? <Item key={activeId} id={activeId} /> : null}
+                {activeId ? <Item id={activeId} key={activeId} /> : null}
             </DragOverlay>
         </DndContext>
     );
