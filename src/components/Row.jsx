@@ -16,6 +16,7 @@ const getRowStyle = (isBottom, isLast) => {
     const defaultStyle = {
         borderColor: "black",
         borderStyle: "solid",
+        borderWidth: "1px",
         minHeight: ROW_MIN_HEIGHT,
         width: "100%",
     };
