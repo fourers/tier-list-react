@@ -69,7 +69,7 @@ export default function Footer(props) {
                 fullWidth={true}
                 maxWidth="md"
                 onClose={handleClose}
-                open={open}
+                open={!!(props.image && open)}
             >
                 <DialogContent>
                     <Stack direction="column" spacing={2}>
