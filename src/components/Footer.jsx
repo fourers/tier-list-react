@@ -1,4 +1,3 @@
-import DeleteIcon from "@mui/icons-material/Delete";
 import DownloadIcon from "@mui/icons-material/Download";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Button from "@mui/material/Button";
@@ -54,15 +53,6 @@ export default function Footer(props) {
                     title="Reset"
                 >
                     <RefreshIcon />
-                </Fab>
-                <Fab
-                    aria-label="bin"
-                    color="primary"
-                    onClick={resetState}
-                    size="medium"
-                    title="Drag to Bin"
-                >
-                    <DeleteIcon />
                 </Fab>
             </Stack>
             <Dialog
