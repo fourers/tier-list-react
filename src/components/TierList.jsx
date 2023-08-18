@@ -108,13 +108,14 @@ export default function TierList() {
                     style={{ minHeight: "calc(100vh - 40px)" }}
                 >
                     <div ref={ref}>
-                        {data.rowOrder.map((rowId) => (
+                        {data.rowOrder.map((rowId, index) => (
                             <Row
                                 key={rowId}
                                 rowId={rowId}
                                 items={tierState[rowId]}
                                 activeId={activeId}
                                 overId={overId}
+                                isLast={index === data.rowOrder.length - 1}
                             />
                         ))}
                     </div>

@@ -12,7 +12,7 @@ import {
     ROW_PADDING,
 } from "./constants";
 
-const getRowStyle = (isBottom) => {
+const getRowStyle = (isBottom, isLast) => {
     const defaultStyle = {
         borderColor: "black",
         borderStyle: "solid",
@@ -22,11 +22,12 @@ const getRowStyle = (isBottom) => {
     if (isBottom) {
         return {
             ...defaultStyle,
-            borderBottom: 0,
-            borderLeft: 0,
-            borderRight: 0,
+            borderStyle: "none",
             paddingTop: "5px",
         };
+    }
+    if (isLast) {
+        return defaultStyle;
     }
     return {
         ...defaultStyle,
@@ -50,10 +51,21 @@ const getDraggablePanelStyle = (isBottom) => {
     };
 };
 
-export default function Row({ rowId, items, isBottom, activeId, overId }) {
+export default function Row({
+    rowId,
+    items,
+    isBottom,
+    isLast,
+    activeId,
+    overId,
+}) {
     const isOver = overId === rowId;
     return (
-        <Grid container sx={getRowStyle(isBottom)} xs={isBottom ? true : false}>
+        <Grid
+            container
+            sx={getRowStyle(isBottom, isLast)}
+            xs={isBottom ? true : false}
+        >
             {!isBottom && (
                 <Grid
                     xs="auto"
