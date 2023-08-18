@@ -61,7 +61,11 @@ export default function Row({
 }) {
     const isOver = overId === rowId;
     return (
-        <Droppable id={rowId} key={rowId}>
+        <Droppable
+            id={rowId}
+            key={rowId}
+            style={{ display: "flex", height: "100%", width: "100%" }}
+        >
             <Grid
                 container
                 sx={getRowStyle(isBottom, isLast)}

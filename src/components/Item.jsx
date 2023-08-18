@@ -1,23 +1,21 @@
-import { useDroppable } from "@dnd-kit/core";
 import data from "../default_data.json";
-import { Draggable } from "./Draggable";
+import Draggable from "./Draggable";
+import Droppable from "./Droppable";
+import { IMG_BLOCK_WITH_MARGIN_HEIGHT } from "./constants";
 import { getImgStyle } from "./style";
 
 export default function Item(props) {
-    const { setNodeRef } = useDroppable({
-        id: props.id,
-    });
-
     const isActive = props.activeId === props.id;
     const isOver = props.overId === props.id;
     return (
         <Draggable id={props.id}>
-            <div
-                ref={setNodeRef}
+            <Droppable
+                id={props.id}
                 style={{
                     alignContent: "flex-start",
                     display: "flex",
                     flexWrap: "wrap",
+                    height: IMG_BLOCK_WITH_MARGIN_HEIGHT,
                 }}
             >
                 {props.activeId && isOver && !isActive && (
@@ -33,7 +31,7 @@ export default function Item(props) {
                         title={!isActive ? data.items[props.id].name : null}
                     />
                 )}
-            </div>
+            </Droppable>
         </Draggable>
     );
 }
