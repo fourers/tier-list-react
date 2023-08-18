@@ -62,7 +62,12 @@ export default function Footer(props) {
                 <DialogContent>
                     <Stack direction="column" spacing={2}>
                         <Stack direction="row" justifyContent="center">
-                            <Button variant="text" onClick={handleClose}>
+                            <Button
+                                variant="text"
+                                onClick={handleClose}
+                                href={props.image}
+                                download="tier_list.png"
+                            >
                                 Download Image
                             </Button>
                         </Stack>
