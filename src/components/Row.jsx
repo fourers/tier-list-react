@@ -1,7 +1,6 @@
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-import React from "react";
 import data from "../default_data.json";
 import Droppable from "./Droppable";
 import Image from "./Image";

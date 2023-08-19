@@ -1,7 +1,7 @@
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
-import React, { createRef, useState } from "react";
+import { createRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useScreenshot } from "use-react-screenshot";
 import data from "../default_data.json";
