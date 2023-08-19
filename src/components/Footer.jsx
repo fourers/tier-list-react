@@ -8,13 +8,15 @@ import Fab from "@mui/material/Fab";
 import Stack from "@mui/material/Stack";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { reset } from "../store/tiersSlice";
+import { reset, update } from "../store/tiersSlice";
 import Droppable from "./Droppable";
-import { BIN_ROW_ID } from "./constants";
+import { BIN_ROW_ID, BOTTOM_ROW_ID } from "./constants";
 
 export default function Footer(props) {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
+
+    const setTierState = (newValue) => dispatch(update(newValue));
 
     const handleClickOpen = () => {
         props.takeScreenshot();
@@ -27,6 +29,19 @@ export default function Footer(props) {
 
     const resetState = () => {
         dispatch(reset());
+    };
+
+    const restoreBin = () => {
+        setTierState((prevState) => {
+            const sourceClone = Array.from(prevState[BIN_ROW_ID]);
+            const destinationClone = Array.from(prevState[BOTTOM_ROW_ID]);
+            destinationClone.push(...sourceClone);
+            return {
+                ...prevState,
+                [BIN_ROW_ID]: [],
+                [BOTTOM_ROW_ID]: destinationClone,
+            };
+        });
     };
 
     return (
@@ -63,6 +78,7 @@ export default function Footer(props) {
                         color={
                             props.overId === BIN_ROW_ID ? "error" : "secondary"
                         }
+                        onClick={restoreBin}
                         size="medium"
                         title="Drag to Bin"
                     >

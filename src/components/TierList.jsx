@@ -12,8 +12,9 @@ import Row from "./Row";
 import { BIN_ROW_ID, BOTTOM_ROW_ID } from "./constants";
 
 export default function TierList() {
-    const tierState = useSelector((state) => state.tiers.value);
     const dispatch = useDispatch();
+
+    const tierState = useSelector((state) => state.tiers.value);
     const setTierState = (newValue) => dispatch(update(newValue));
 
     const [activeId, setActiveId] = useState(null);
@@ -70,7 +71,7 @@ export default function TierList() {
                 ...prevState,
                 [sourceRow]: sourceClone,
             }));
-        } else if (destinationRow !== BIN_ROW_ID) {
+        } else {
             const destinationClone = Array.from(tierState[destinationRow]);
             if (destinationId === destinationRow) {
                 destinationClone.push(removedItem);
@@ -82,11 +83,6 @@ export default function TierList() {
             setTierState((prevState) => ({
                 ...prevState,
                 [destinationRow]: destinationClone,
-                [sourceRow]: sourceClone,
-            }));
-        } else {
-            setTierState((prevState) => ({
-                ...prevState,
                 [sourceRow]: sourceClone,
             }));
         }
