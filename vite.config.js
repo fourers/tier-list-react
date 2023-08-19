@@ -5,4 +5,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
     base: "/tier-list-react/",
     plugins: [react()],
+    rollupOutputOptions: {
+        entryFileNames: '[name]-[hash].js',
+    }
 });
