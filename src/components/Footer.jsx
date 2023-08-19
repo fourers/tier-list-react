@@ -111,7 +111,6 @@ export default function Footer(props) {
             >
                 <DialogContent>
                     <Stack direction="column" spacing={2}>
-                        <Canvas draw={draw} style={{ width: "100%" }} />
                         <Stack direction="row" justifyContent="center">
                             <Button
                                 color="secondary"
@@ -123,6 +122,7 @@ export default function Footer(props) {
                                 Download Image
                             </Button>
                         </Stack>
+                        <Canvas draw={draw} style={{ width: "100%" }} />
                     </Stack>
                 </DialogContent>
             </Dialog>

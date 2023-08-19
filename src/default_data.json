@@ -48,11 +48,11 @@
     "connor6Pray",
     "connor6Pride",
     "connor6Prime",
-    "connor6Sauve",
     "connor6Shiny",
     "connor6Silly",
     "connor6Sip",
     "connor6Stare",
+    "connor6Suave",
     "connor6Subs",
     "connor6Sus",
     "connor6T",
@@ -257,10 +257,6 @@
       "name": "connor6Prime",
       "src": "items/connor6Prime.png"
     },
-    "connor6Sauve": {
-      "name": "connor6Sauve",
-      "src": "items/connor6Sauve.png"
-    },
     "connor6Shiny": {
       "name": "connor6Shiny",
       "src": "items/connor6Shiny.png"
@@ -276,6 +272,10 @@
     "connor6Stare": {
       "name": "connor6Stare",
       "src": "items/connor6Stare.png"
+    },
+    "connor6Suave": {
+      "name": "connor6Suave",
+      "src": "items/connor6Suave.png"
     },
     "connor6Subs": {
       "name": "connor6Subs",
