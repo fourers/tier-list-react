@@ -39,6 +39,7 @@ const getPanelStyle = (isBottom) => {
     const defaultStyle = {
         height: "100%",
         padding: ROW_PADDING,
+        userSelect: "none",
     };
     if (isBottom) {
         return {
