@@ -28,7 +28,7 @@ export default function Footer(props) {
         setDraw({});
         setImage(null);
         setOpen(true);
-        html2canvas(props.viewRef.current, { scale: 6 }).then((canvas) => {
+        html2canvas(props.viewRef.current, { scale: 2 }).then((canvas) => {
             const croppedCanvas = document.createElement("canvas");
             const croppedCanvasContext = croppedCanvas.getContext("2d");
             croppedCanvas.height = canvas.height;
@@ -105,7 +105,7 @@ export default function Footer(props) {
             </Stack>
             <Dialog
                 fullWidth={true}
-                maxWidth="lg"
+                maxWidth="xl"
                 onClose={handleClose}
                 open={!!(image && open)}
             >
