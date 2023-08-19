@@ -1,9 +1,8 @@
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
-import { createRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useScreenshot } from "use-react-screenshot";
 import data from "../default_data.json";
 import { update } from "../store/tiersSlice";
 import Footer from "./Footer";
@@ -20,8 +19,7 @@ export default function TierList() {
     const [activeId, setActiveId] = useState(null);
     const [overId, setOverId] = useState(null);
 
-    const ref = createRef(null);
-    const [image, takeScreenshot] = useScreenshot();
+    const viewRef = useRef(null);
 
     const getRowById = (itemId) => {
         const matchingRows = data.rowOrder.filter((row) =>
@@ -108,7 +106,7 @@ export default function TierList() {
                     direction="column"
                     style={{ minHeight: "calc(100vh - 40px)" }}
                 >
-                    <div ref={ref}>
+                    <div ref={viewRef}>
                         {data.rowOrder.map((rowId, index) => (
                             <Row
                                 activeId={activeId}
@@ -129,11 +127,7 @@ export default function TierList() {
                         rowId={BOTTOM_ROW_ID}
                     />
                 </Grid>
-                <Footer
-                    image={image}
-                    overId={overId}
-                    takeScreenshot={() => takeScreenshot(ref.current)}
-                />
+                <Footer overId={overId} viewRef={viewRef} />
             </Box>
             <DragOverlay>
                 {activeId ? (

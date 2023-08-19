@@ -6,6 +6,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Fab from "@mui/material/Fab";
 import Stack from "@mui/material/Stack";
+import html2canvas from "html2canvas";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { reset, update } from "../store/tiersSlice";
@@ -14,13 +15,23 @@ import { BIN_ROW_ID, BOTTOM_ROW_ID } from "./constants";
 
 export default function Footer(props) {
     const [open, setOpen] = useState(false);
+    const [image, setImage] = useState(null);
     const dispatch = useDispatch();
 
     const setTierState = (newValue) => dispatch(update(newValue));
 
     const handleClickOpen = () => {
-        props.takeScreenshot();
+        setImage(null);
         setOpen(true);
+        html2canvas(props.viewRef.current, { scale: 3 }).then((canvas) => {
+            const croppedCanvas = document.createElement("canvas");
+            const croppedCanvasContext = croppedCanvas.getContext("2d");
+            croppedCanvas.height = canvas.height;
+            croppedCanvas.width = canvas.width;
+            croppedCanvasContext.drawImage(canvas, 0, 0);
+            const base64Image = croppedCanvas.toDataURL();
+            setImage(base64Image);
+        });
     };
 
     const handleClose = () => {
@@ -90,11 +101,11 @@ export default function Footer(props) {
                 fullWidth={true}
                 maxWidth="md"
                 onClose={handleClose}
-                open={!!(props.image && open)}
+                open={!!(image && open)}
             >
                 <DialogContent>
                     <Stack direction="column" spacing={2}>
-                        <img src={props.image} style={{ width: "100%" }} />
+                        <img src={image} style={{ width: "100%" }} />
                         <Stack direction="row" justifyContent="center">
                             <Button
                                 download="tier_list.png"
