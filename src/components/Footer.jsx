@@ -28,13 +28,8 @@ export default function Footer(props) {
         setDraw({});
         setImage(null);
         setOpen(true);
-        html2canvas(props.viewRef.current, { scale: 2 }).then((canvas) => {
-            const croppedCanvas = document.createElement("canvas");
-            const croppedCanvasContext = croppedCanvas.getContext("2d");
-            croppedCanvas.height = canvas.height;
-            croppedCanvas.width = canvas.width;
-            croppedCanvasContext.drawImage(canvas, 0, 0);
-            const base64Image = croppedCanvas.toDataURL();
+        html2canvas(props.viewRef.current, { backgroundColor: null, scale: 2 }).then((canvas) => {
+            const base64Image = canvas.toDataURL();
             setImage(base64Image);
             setDraw(canvas);
         });
@@ -108,6 +103,7 @@ export default function Footer(props) {
                 maxWidth="xl"
                 onClose={handleClose}
                 open={!!(image && open)}
+                scroll="body"
             >
                 <DialogContent>
                     <Stack direction="column" spacing={2}>
