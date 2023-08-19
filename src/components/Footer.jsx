@@ -62,7 +62,7 @@ export default function Footer(props) {
                         aria-label="reset"
                         color={
                             props.overId === BIN_ROW_ID
-                                ? "secondary"
+                                ? "error"
                                 : "primary"
                         }
                         size="medium"
