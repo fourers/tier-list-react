@@ -37,6 +37,7 @@ const getRowStyle = (isBottom, isLast) => {
 
 const getPanelStyle = (isBottom) => {
     const defaultStyle = {
+        height: "100%",
         padding: ROW_PADDING,
     };
     if (isBottom) {
@@ -61,15 +62,15 @@ export default function Row({
 }) {
     const isOver = overId === rowId;
     return (
-        <Droppable
-            id={rowId}
-            key={rowId}
-            style={{ display: "flex", height: "100%", width: "100%" }}
+        <Grid
+            container
+            sx={getRowStyle(isBottom, isLast)}
+            xs={isBottom ? true : false}
         >
-            <Grid
-                container
-                sx={getRowStyle(isBottom, isLast)}
-                xs={isBottom ? true : false}
+            <Droppable
+                id={rowId}
+                key={rowId}
+                style={{ display: "flex", width: "100%" }}
             >
                 {!isBottom && (
                     <Grid
@@ -112,7 +113,7 @@ export default function Row({
                         {isOver ? <Image id={activeId} opaque /> : null}
                     </div>
                 </Grid>
-            </Grid>
-        </Droppable>
+            </Droppable>
+        </Grid>
     );
 }
