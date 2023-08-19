@@ -73,7 +73,7 @@ export default function TierList() {
             const destinationClone = Array.from(tierState[destinationRow]);
             if (destinationId === destinationRow) {
                 destinationClone.push(removedItem);
-            } else if (destinationRow !== BIN_ROW_ID) {
+            } else {
                 const destinationIndex =
                     destinationClone.indexOf(destinationId);
                 destinationClone.splice(destinationIndex, 0, removedItem);

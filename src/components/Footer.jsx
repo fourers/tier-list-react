@@ -1,7 +1,9 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import DownloadIcon from "@mui/icons-material/Download";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import Backdrop from "@mui/material/Backdrop";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Fab from "@mui/material/Fab";
@@ -10,12 +12,14 @@ import html2canvas from "html2canvas";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { reset, update } from "../store/tiersSlice";
+import Canvas from "./Canvas";
 import Droppable from "./Droppable";
 import { BIN_ROW_ID, BOTTOM_ROW_ID } from "./constants";
 
 export default function Footer(props) {
     const [open, setOpen] = useState(false);
     const [image, setImage] = useState(null);
+    const [draw, setDraw] = useState({});
     const dispatch = useDispatch();
 
     const setTierState = (newValue) => dispatch(update(newValue));
@@ -31,6 +35,7 @@ export default function Footer(props) {
             croppedCanvasContext.drawImage(canvas, 0, 0);
             const base64Image = croppedCanvas.toDataURL();
             setImage(base64Image);
+            setDraw(canvas);
         });
     };
 
@@ -99,19 +104,20 @@ export default function Footer(props) {
             </Stack>
             <Dialog
                 fullWidth={true}
-                maxWidth="md"
+                maxWidth="lg"
                 onClose={handleClose}
                 open={!!(image && open)}
             >
                 <DialogContent>
                     <Stack direction="column" spacing={2}>
-                        <img src={image} style={{ width: "100%" }} />
+                        <Canvas draw={draw} style={{ width: "100%" }} />
                         <Stack direction="row" justifyContent="center">
                             <Button
+                                color="secondary"
                                 download="tier_list.png"
                                 href={image}
                                 onClick={handleClose}
-                                variant="text"
+                                variant="outline"
                             >
                                 Download Image
                             </Button>
@@ -119,6 +125,13 @@ export default function Footer(props) {
                     </Stack>
                 </DialogContent>
             </Dialog>
+            <Backdrop
+                onClick={handleClose}
+                open={open && !image}
+                sx={{ color: "#fff", zIndex: 200 }}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </div>
     );
 }
