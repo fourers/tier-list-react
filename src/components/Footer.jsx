@@ -25,9 +25,10 @@ export default function Footer(props) {
     const setTierState = (newValue) => dispatch(update(newValue));
 
     const handleClickOpen = () => {
+        setDraw({});
         setImage(null);
         setOpen(true);
-        html2canvas(props.viewRef.current, { scale: 3 }).then((canvas) => {
+        html2canvas(props.viewRef.current, { scale: 6 }).then((canvas) => {
             const croppedCanvas = document.createElement("canvas");
             const croppedCanvasContext = croppedCanvas.getContext("2d");
             croppedCanvas.height = canvas.height;
