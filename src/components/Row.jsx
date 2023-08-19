@@ -4,7 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
 import data from "../default_data.json";
 import Droppable from "./Droppable";
-import GhostItem from "./GhostItem";
+import Image from "./Image";
 import Item from "./Item";
 import {
     ROW_BACKGROUND_COLOUR,
@@ -110,7 +110,7 @@ export default function Row({
                                 overId={overId}
                             />
                         ))}
-                        {isOver ? <GhostItem id={activeId} /> : null}
+                        {isOver ? <Image id={activeId} opaque /> : null}
                     </div>
                 </Grid>
             </Grid>

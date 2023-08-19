@@ -20,7 +20,7 @@ export default function Image(props) {
         <img
             src={data.items[props.id].src}
             style={{
-                ...getImgStyle(!!props.solid),
+                ...getImgStyle(!props.opaque),
                 ...style,
             }}
             title={props.title}

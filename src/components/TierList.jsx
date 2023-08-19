@@ -141,7 +141,7 @@ export default function TierList() {
             </Box>
             <DragOverlay>
                 {activeId ? (
-                    <Image id={activeId} solid={overId !== BIN_ROW_ID} />
+                    <Image id={activeId} opaque={overId === BIN_ROW_ID} />
                 ) : null}
             </DragOverlay>
         </DndContext>
