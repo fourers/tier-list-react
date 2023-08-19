@@ -36,7 +36,7 @@ export default function TierList() {
     const onDragStart = (event) => {
         const activeId = event.active.id;
         setActiveId(activeId);
-        setOverId(null);
+        setOverId(activeId);
     };
 
     const onDragOver = (event) => {
