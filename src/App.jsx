@@ -5,10 +5,14 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import TierList from "./components/TierList";
 import { persistor, store } from "./store/store";
+import { grey } from "@mui/material/colors";
 
 const darkTheme = createTheme({
     palette: {
         mode: "dark",
+        secondary: {
+            main: grey[500],
+        },
     },
 });
 

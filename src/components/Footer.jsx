@@ -41,7 +41,7 @@ export default function Footer(props) {
             <Stack direction="row" spacing={2}>
                 <Fab
                     aria-label="download"
-                    color="primary"
+                    color="secondary"
                     onClick={handleClickOpen}
                     size="medium"
                     title="Download"
@@ -50,7 +50,7 @@ export default function Footer(props) {
                 </Fab>
                 <Fab
                     aria-label="reset"
-                    color="primary"
+                    color="secondary"
                     onClick={resetState}
                     size="medium"
                     title="Reset"
@@ -63,7 +63,7 @@ export default function Footer(props) {
                         color={
                             props.overId === BIN_ROW_ID
                                 ? "error"
-                                : "primary"
+                                : "secondary"
                         }
                         size="medium"
                         title="Drag to Bin"
