@@ -109,7 +109,7 @@ export default function Footer(props) {
                         <Stack direction="row" justifyContent="center">
                             <Button
                                 download="tier_list.png"
-                                href={props.image}
+                                href={image}
                                 onClick={handleClose}
                                 variant="text"
                             >
