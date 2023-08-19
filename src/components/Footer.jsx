@@ -61,9 +61,7 @@ export default function Footer(props) {
                     <Fab
                         aria-label="reset"
                         color={
-                            props.overId === BIN_ROW_ID
-                                ? "error"
-                                : "secondary"
+                            props.overId === BIN_ROW_ID ? "error" : "secondary"
                         }
                         size="medium"
                         title="Drag to Bin"
