@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import data from "../default_data.json";
 import { update } from "../store/tiersSlice";
+import { customCollisionDetectionAlgorithm } from "../utils/collision";
 import Footer from "./Footer";
 import Image from "./Image";
 import Row from "./Row";
@@ -88,6 +89,7 @@ export default function TierList() {
 
     return (
         <DndContext
+            collisionDetection={customCollisionDetectionAlgorithm}
             onDragEnd={onDragEnd}
             onDragOver={onDragOver}
             onDragStart={onDragStart}
