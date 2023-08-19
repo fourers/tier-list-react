@@ -1,3 +1,4 @@
+import data from "../default_data.json";
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
 import Image from "./Image";
@@ -21,7 +22,11 @@ export default function Item(props) {
                     <Image id={props.activeId} opaque />
                 )}
                 {(!isActive || (isActive && (isOver || !props.overId))) && (
-                    <Image id={props.id} opaque={isActive} />
+                    <Image
+                        id={props.id}
+                        opaque={isActive}
+                        title={data.items[props.id].name}
+                    />
                 )}
             </Droppable>
         </Draggable>
