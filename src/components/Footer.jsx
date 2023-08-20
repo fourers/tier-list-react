@@ -28,7 +28,10 @@ export default function Footer(props) {
         setDraw({});
         setImage(null);
         setOpen(true);
-        html2canvas(props.viewRef.current, { backgroundColor: null, scale: 2 }).then((canvas) => {
+        html2canvas(props.viewRef.current, {
+            backgroundColor: null,
+            scale: 2,
+        }).then((canvas) => {
             const base64Image = canvas.toDataURL();
             setImage(base64Image);
             setDraw(canvas);

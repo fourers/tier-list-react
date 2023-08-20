@@ -32,14 +32,19 @@ export default function TierList() {
         return BOTTOM_ROW_ID;
     };
 
+    const remapId = (unmappedId) =>
+        !!unmappedId && unmappedId.startsWith("prev-")
+            ? unmappedId.slice("prev-".length)
+            : unmappedId;
+
     const onDragStart = (event) => {
-        const activeId = event.active.id;
+        const activeId = remapId(event.active.id);
         setActiveId(activeId);
         setOverId(activeId);
     };
 
     const onDragOver = (event) => {
-        setOverId(event.over ? event.over.id : null);
+        setOverId(event.over ? remapId(event.over.id) : null);
     };
 
     const onDragEnd = (event) => {
@@ -53,7 +58,7 @@ export default function TierList() {
         const sourceClone = Array.from(tierState[sourceRow]);
         const sourceIndex = sourceClone.indexOf(sourceId);
         const [removedItem] = sourceClone.splice(sourceIndex, 1);
-        const destinationId = event.over.id;
+        const destinationId = remapId(event.over.id);
         const destinationRow = destinationId.startsWith("row-")
             ? destinationId
             : getRowById(destinationId);

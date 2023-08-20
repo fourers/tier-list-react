@@ -54,6 +54,8 @@ itemFiles.forEach((filePath) => {
     const pathName = pathObject.name;
     if (pathName.startsWith("row-")) {
         throw new Error(`File name "${filePath}" cannot start with "row-"`);
+    } else if (pathName.startsWith("prev-")) {
+        throw new Error(`File name "${filePath}" cannot start with "prev-"`);
     }
     items[pathName] = {
         name: pathName,
