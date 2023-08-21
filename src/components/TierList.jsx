@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import data from "../default_data.json";
 import { update } from "../store/tiersSlice";
 import { customCollisionDetectionAlgorithm } from "../utils/collision";
+import { getRowById, remapId } from "../utils/tierState";
 import Footer from "./Footer";
 import Image from "./Image";
 import Row from "./Row";
@@ -21,21 +22,6 @@ export default function TierList() {
     const [overId, setOverId] = useState(null);
 
     const viewRef = useRef(null);
-
-    const getRowById = (itemId) => {
-        const matchingRows = data.rowOrder.filter((row) =>
-            tierState[row].includes(itemId),
-        );
-        if (matchingRows.length > 0) {
-            return matchingRows[0];
-        }
-        return BOTTOM_ROW_ID;
-    };
-
-    const remapId = (unmappedId) =>
-        !!unmappedId && unmappedId.startsWith("prev-")
-            ? unmappedId.slice("prev-".length)
-            : unmappedId;
 
     const onDragStart = (event) => {
         const activeId = remapId(event.active.id);
@@ -54,14 +40,14 @@ export default function TierList() {
             return;
         }
         const sourceId = event.active.id;
-        const sourceRow = getRowById(sourceId);
+        const sourceRow = getRowById(sourceId, tierState);
         const sourceClone = Array.from(tierState[sourceRow]);
         const sourceIndex = sourceClone.indexOf(sourceId);
         const [removedItem] = sourceClone.splice(sourceIndex, 1);
         const destinationId = remapId(event.over.id);
         const destinationRow = destinationId.startsWith("row-")
             ? destinationId
-            : getRowById(destinationId);
+            : getRowById(destinationId, tierState);
         if (sourceRow === destinationRow) {
             if (destinationId === sourceId) {
                 return;
